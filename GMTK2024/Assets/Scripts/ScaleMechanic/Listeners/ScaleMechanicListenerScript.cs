@@ -7,19 +7,14 @@ public class ScaleMechanicListenerScript : MonoBehaviour
     [SerializeField]
     private ScaleMechanicComponent source;
 
-    //protected ScaleMechanicComponent Source { get { return source; } }
-
-    private void Start()
-    {
-        source.RegisterListener(this);
-    }
     private void OnDestroy()
     {
         source.RemoveListener(this);
     }
+
     private void OnEnable()
     {
-        source.RemoveListener(this);
+        source.RegisterListener(this);
     }
     private void OnDisable()
     {
