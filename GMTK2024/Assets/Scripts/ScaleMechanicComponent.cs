@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class ScaleMechanicComponent : MonoBehaviour
 {
-    [Header("Gameplay Variables")]
-    [SerializeField]
     private Vector2 currentSize = Vector2.one;
-    [SerializeField]
     private Vector2 pivotPoint = DefaultPivotPoint;
 
     private static readonly Vector2 DefaultPivotPoint = new Vector2(0.5f, 0.5f);
