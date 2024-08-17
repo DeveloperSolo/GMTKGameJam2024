@@ -1,8 +1,13 @@
 using System.Collections.Generic;
+using UnityEditor.Presets;
 using UnityEngine;
 
 public class ScaleMechanicComponent : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField]
+    private bool preserveAspectRatio = false;
+
     private Vector2 currentSize = Vector2.one;
     private Vector2 pivotPoint = DefaultPivotPoint;
 
@@ -14,6 +19,7 @@ public class ScaleMechanicComponent : MonoBehaviour
     [SerializeField] private List<BoxCollider2D> draggableEdges;
 
     private ScaleMechanicGizmoScript currentDraggingGizmo = null;
+    private List<ScaleMechanicListenerScript> listeners = new List<ScaleMechanicListenerScript>();
 
     private void Start()
     {
@@ -42,6 +48,7 @@ public class ScaleMechanicComponent : MonoBehaviour
     public void StartDraggingGizmo(ScaleMechanicGizmoScript gizmo)
     {
         currentDraggingGizmo = gizmo;
+        SendEvent(ScaleMechanicEvent.EventType.Start);
     }
 
     private void UpdateDraggingGizmo()
@@ -66,31 +73,75 @@ public class ScaleMechanicComponent : MonoBehaviour
             return;
         }
         currentDraggingGizmo = null;
+        SendEvent(ScaleMechanicEvent.EventType.End);
     }
 
     #endregion Gizmos
 
+    #region Listeners
+
+    public void RegisterListener(ScaleMechanicListenerScript listener)
+    {
+        if (!listeners.Contains(listener))
+        {
+            listeners.Add(listener);
+        }
+    }
+
+    private void SendEvent(ScaleMechanicEvent.EventType type)
+    {
+        ScaleMechanicEvent ev = new ScaleMechanicEvent(type, transform.localPosition, currentSize);
+        foreach (ScaleMechanicListenerScript listener in listeners)
+        {
+            listener.Recieve(ev);
+        }
+    }
+
+    public void RemoveListener(ScaleMechanicListenerScript listener)
+    {
+        listeners.Remove(listener);
+    }
+
+    #endregion Listeners
+
     #region Size/Scaling
 
-    private void UpdateSize(ScaleMode scaleMode, Vector2 sizeChange)
+    public bool IsScaling()
+    {
+        return currentDraggingGizmo != null;
+    }
+
+    private void UpdateSize(ScaleMode scaleMode, Vector2 mouseDelta)
     {
         SetPivotPoint(scaleMode);
-        UpdateSize(currentSize + CullSizeChange(scaleMode, sizeChange));
+
+        Vector2 newSize = currentSize + GetSizeChange(scaleMode, mouseDelta);
+        if(preserveAspectRatio)
+        {
+            newSize = GetPreservedAspectRatio(scaleMode, newSize);
+        }
+        UpdateSize(newSize);
+
         UpdateSizeVisuals();
         ResetPivotPoint();
     }
 
     private void UpdateSize(Vector2 newSize)
     {
+        newSize.x = Mathf.Max(newSize.x, 0.0f);
+        newSize.y = Mathf.Max(newSize.y, 0.0f);
+
         Vector2 position = transform.localPosition;
         position += (DefaultPivotPoint - pivotPoint) * (newSize - currentSize);
 
         transform.localPosition = new Vector3(position.x, position.y, transform.localPosition.z);
         currentSize = newSize;
+        SendEvent(ScaleMechanicEvent.EventType.Update);
     }
 
-    private Vector2 CullSizeChange(ScaleMode scaleMode, Vector2 sizeChange)
+    private Vector2 GetSizeChange(ScaleMode scaleMode, Vector2 mouseDelta)
     {
+        Vector2 sizeChange = mouseDelta;
         if (scaleMode.Contains(ScaleMode.Bottom))
         {
             sizeChange.y *= -1;
@@ -108,6 +159,33 @@ public class ScaleMechanicComponent : MonoBehaviour
             sizeChange.x = 0.0f;
         }
         return sizeChange;
+    }
+
+    private Vector2 GetPreservedAspectRatio(ScaleMode scaleMode, Vector2 newSize)
+    {
+        float currentAspectRatio = currentSize.x / currentSize.y;
+
+        if (scaleMode.Contains(ScaleMode.Top | ScaleMode.Bottom) && !scaleMode.Contains(ScaleMode.Left | ScaleMode.Right))
+        {
+            newSize.x = currentAspectRatio * newSize.y;
+        }
+        else if (scaleMode.Contains(ScaleMode.Left | ScaleMode.Right) && !scaleMode.Contains(ScaleMode.Top | ScaleMode.Bottom))
+        {
+            newSize.y = newSize.x / currentAspectRatio;
+        }
+        else
+        {
+            float newAspectRatio = newSize.x / newSize.y;
+            if(newAspectRatio > currentAspectRatio)
+            {
+                newSize.y = newSize.x / currentAspectRatio;
+            }
+            else
+            {
+                newSize.x = currentAspectRatio * newSize.y;
+            }
+        }
+        return newSize;
     }
 
     private void UpdateSizeVisuals()
