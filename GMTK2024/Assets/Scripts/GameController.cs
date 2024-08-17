@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private static GameController m_Instance;
+    private static GameController instance;
 
-    public static GameController GetInstance() { return m_Instance; }
+    public static GameController Instance { get { return instance; } }
 
     private void Awake()
     {
-        if(m_Instance == null)
+        if(instance == null)
         {
-            m_Instance = this;
+            instance = this;
         }
-        else if(m_Instance != this)
+        else if(instance != this)
         {
             Destroy(this);
             Debug.LogWarning(gameObject.name + " had an extra GameController, which was deleted");
