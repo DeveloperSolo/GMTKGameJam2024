@@ -24,7 +24,7 @@ public class ScaleMechanicGizmoScript : MonoBehaviour, IPointerDownHandler
 
     private void Update()
     {
-        if(isDragging && Input.GetMouseButtonUp(0))
+        if(isDragging && GameController.GetMouseButtonUp(MouseButton.Left))
         {
             parent.EndDraggingGizmo(this);
             isDragging = false;
