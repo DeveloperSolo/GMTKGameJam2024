@@ -18,17 +18,30 @@ public class ScaleMechanicGizmoScript : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        parent.StartDraggingGizmo(this);
-        isDragging = true;
+        TryStartDrag();
     }
 
     private void Update()
     {
         if(isDragging && GameController.GetMouseButtonUp(MouseButton.Left))
         {
-            parent.EndDraggingGizmo(this);
-            isDragging = false;
+            EndDrag();
         }
+    }
+
+    private void TryStartDrag()
+    {
+        if (parent.IsDraggingGizmoEnabled)
+        {
+            parent.StartDraggingGizmo(this);
+            isDragging = true;
+        }
+    }
+
+    public void EndDrag()
+    {
+        parent.EndDraggingGizmo(this);
+        isDragging = false;
     }
 }
 

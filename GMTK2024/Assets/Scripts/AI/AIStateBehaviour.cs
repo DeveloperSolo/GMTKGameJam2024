@@ -4,19 +4,54 @@ using UnityEngine;
 
 partial class AIControllerScript : MonoBehaviour
 {
-    private enum AIState
+    public enum AIState
     {
         None,
+        Scaling,
         Wander,
         Pursue,
+        Damaged,
     }
 
     private static Dictionary<AIState, AIBaseStateBehaviour> GenerateBehaviours()
     {
         Dictionary<AIState, AIBaseStateBehaviour> behaviours = new Dictionary<AIState, AIBaseStateBehaviour>();
+        GenerateBehaviourToDictionary<AIScalingStateBehaviour>(behaviours);
         GenerateBehaviourToDictionary<AIWanderStateBehaviour>(behaviours);
         GenerateBehaviourToDictionary<AIPursueStateBehaviour>(behaviours);
+        GenerateBehaviourToDictionary<AIDamagedStateBehaviour>(behaviours);
         return behaviours;
+    }
+
+    private class AIDamagedStateBehaviour : AIBaseStateBehaviour
+    {
+        public override AIState State => AIState.Damaged;
+        private float wait;
+
+        public override void OnEnter(AIControllerScript controller)
+        {
+            base.OnEnter(controller);
+            controller.scaleMechanic.DisableDraggingGizmo();
+            wait = 0.5f;
+        }
+
+        public override void OnExit(AIControllerScript controller)
+        {
+            base.OnExit(controller);
+            controller.scaleMechanic.EnableDraggingGizmo();
+        }
+
+        public override void OnUpdate(AIControllerScript controller, float elapsed)
+        {
+            base.OnUpdate(controller, elapsed);
+            if(wait > 0.0f)
+            {
+                wait -= elapsed;
+                return;
+            }
+
+            controller.ResetState();
+        }
     }
 
     private class AIPursueStateBehaviour : AIBaseStateBehaviour
@@ -37,8 +72,13 @@ partial class AIControllerScript : MonoBehaviour
         {
             base.OnUpdate(controller, elapsed);
 
-            GameObject target = controller.GetTarget();
+            if(controller.scaleMechanic.IsDraggingGizmo())
+            {
+                controller.SetState(AIState.Scaling);
+                return;
+            }
 
+            GameObject target = controller.GetTarget();
             if (target == null)
             {
                 controller.SetState(AIState.Wander);
@@ -52,7 +92,6 @@ partial class AIControllerScript : MonoBehaviour
     private class AIWanderStateBehaviour : AIBaseStateBehaviour
     {
         public override AIState State => AIState.Wander;
-
         private float wait;
 
         public override void OnEnter(AIControllerScript controller)
@@ -72,17 +111,21 @@ partial class AIControllerScript : MonoBehaviour
         {
             base.OnUpdate(controller, elapsed);
 
+            if(controller.scaleMechanic.IsDraggingGizmo())
+            {
+                controller.SetState(AIState.Scaling);
+                return;
+            }
             if(controller.HasTarget())
             {
                 controller.SetState(AIState.Pursue);
                 return;
             }
 
-            if(controller.IsMoving())
+            if(controller.movement.IsMoving)
             {
                 return;
             }
-
             if(wait > 0.0f)
             {
                 wait -= elapsed;
@@ -90,6 +133,21 @@ partial class AIControllerScript : MonoBehaviour
             }
 
             controller.SetState(AIState.Wander);
+        }
+    }
+
+    private class AIScalingStateBehaviour : AIBaseStateBehaviour
+    {
+        public override AIState State => AIState.Scaling;
+
+        public override void OnUpdate(AIControllerScript controller, float elapsed)
+        {
+            base.OnUpdate(controller, elapsed);
+            if(!controller.scaleMechanic.IsDraggingGizmo())
+            {
+                controller.ResetState();
+                return;
+            }
         }
     }
 

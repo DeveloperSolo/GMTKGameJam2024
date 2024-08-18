@@ -246,7 +246,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15915ac17865f049bddc53a8886d957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMechanic: {fileID: 3891069087372275067}
 --- !u!114 &8410846756449288346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +327,18 @@ MonoBehaviour:
           m_StringArgument: Damaged
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8851998056674420165}
+        m_TargetAssemblyTypeName: AIControllerScript, Assembly-CSharp
+        m_MethodName: IsDamaged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Damaged
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeathEvent:
     m_PersistentCalls:
       m_Calls:
@@ -354,6 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  knockbackStrength: 500
   onDamagedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -376,6 +390,17 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &3891069087372275067 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+  m_PrefabInstance: {fileID: 7768841379578350610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52286232bbd43524fb112c15b4d9eb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7967012500858259310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 378579146204203900, guid: ce3940ad2f25caf468c51caea741e950, type: 3}

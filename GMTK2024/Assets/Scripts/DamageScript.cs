@@ -7,6 +7,7 @@ public class DamageScript : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private int damage;
+    [SerializeField] private float knockbackStrength;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onDamagedEvent;
@@ -40,6 +41,16 @@ public class DamageScript : MonoBehaviour
         else
         {
             onDeathEvent?.Invoke();
+        }
+
+        if(knockbackStrength > 0)
+        {
+            Rigidbody2D rbody = health.GetComponent<Rigidbody2D>();
+            if(rbody != null)
+            {
+                Vector2 dir = (rbody.transform.position - transform.position).normalized;
+                rbody.AddForce(dir * knockbackStrength);
+            }
         }
     }
 }

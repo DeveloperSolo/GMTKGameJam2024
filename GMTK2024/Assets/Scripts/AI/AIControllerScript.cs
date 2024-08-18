@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(AIMovementScript))]
 public partial class AIControllerScript : MonoBehaviour
 {
+    [Header("Components")]
+    [SerializeField] private ScaleMechanicComponent scaleMechanic;
+
     private AIMovementScript movement;
     private BaseAITargetFinderScript targetFinder;
 
@@ -20,7 +23,7 @@ public partial class AIControllerScript : MonoBehaviour
 
     private void OnEnable()
     {
-        SetState(AIState.Wander);
+        ResetState();
     }
 
     private void Update()
@@ -31,16 +34,32 @@ public partial class AIControllerScript : MonoBehaviour
         }
     }
 
+    public void IsDamaged()
+    {
+        SetState(AIState.Damaged);
+    }
+
+    private void ResetState()
+    {
+        SetState(AIState.Wander);
+    }
+
     private void SetState(AIState newState)
     {
         if(currentBehaviour != null)
         {
             currentBehaviour.OnExit(this);
         }
-        if(allBehaviours.TryGetValue(newState, out currentBehaviour))
+        movement.Interrupt();
+        if (allBehaviours.TryGetValue(newState, out currentBehaviour))
         {
             currentBehaviour.OnEnter(this);
         }
+    }
+
+    private AIState GetState()
+    {
+        return currentBehaviour.State;
     }
 
     #region Movement
@@ -53,11 +72,6 @@ public partial class AIControllerScript : MonoBehaviour
     private void MoveToPosition(Vector2 position)
     {
         movement.TargetPosition = position;
-    }
-
-    private bool IsMoving()
-    {
-        return movement.IsMoving;
     }
 
     #endregion Movement

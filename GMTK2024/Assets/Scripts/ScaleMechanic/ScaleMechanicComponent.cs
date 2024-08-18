@@ -19,7 +19,10 @@ public class ScaleMechanicComponent : MonoBehaviour
     [SerializeField] private List<BoxCollider2D> draggableEdges;
 
     private ScaleMechanicGizmoScript currentDraggingGizmo = null;
+    private bool isDraggingGizmoEnabled = true;
     private List<ScaleMechanicListenerScript> listeners = new List<ScaleMechanicListenerScript>();
+
+    public bool IsDraggingGizmoEnabled { get { return isDraggingGizmoEnabled; } }
 
     private void Start()
     {
@@ -50,10 +53,27 @@ public class ScaleMechanicComponent : MonoBehaviour
         return currentDraggingGizmo != null;
     }
 
+    public void EnableDraggingGizmo()
+    {
+        isDraggingGizmoEnabled = true;
+    }
+
+    public void DisableDraggingGizmo()
+    {
+        isDraggingGizmoEnabled = false;
+        if(IsDraggingGizmo())
+        {
+            currentDraggingGizmo.EndDrag();
+        }
+    }
+
     public void StartDraggingGizmo(ScaleMechanicGizmoScript gizmo)
     {
-        currentDraggingGizmo = gizmo;
-        SendEvent(ScaleMechanicEvent.EventType.Start);
+        if(IsDraggingGizmoEnabled)
+        {
+            currentDraggingGizmo = gizmo;
+            SendEvent(ScaleMechanicEvent.EventType.Start);
+        }
     }
 
     private void UpdateDraggingGizmo()

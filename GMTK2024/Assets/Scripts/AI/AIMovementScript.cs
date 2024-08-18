@@ -42,4 +42,13 @@ public class AIMovementScript : MonoBehaviour
         }
         rbody.velocity = posDiff / distanceLeft * moveSpeed;
     }
+
+    public void Interrupt()
+    {
+        isMoving = false;
+        if(rbody != null)
+        {
+            rbody.velocity = Vector2.zero;
+        }
+    }
 }

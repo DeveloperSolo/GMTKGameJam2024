@@ -11,6 +11,12 @@ public class ScaleMechanicBoxColliderListenerScript : ScaleMechanicListenerScrip
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
+    protected override void OnScaleStart()
+    {
+        base.OnScaleStart();
+        boxCollider2D.enabled = false;
+    }
+
     protected override void OnScaleUpdate(Vector2 newPosition, Vector2 newSize)
     {
         boxCollider2D.offset = newPosition;
@@ -20,5 +26,6 @@ public class ScaleMechanicBoxColliderListenerScript : ScaleMechanicListenerScrip
     protected override void OnScaleEnd()
     {
         boxCollider2D.offset = Vector2.zero;
+        boxCollider2D.enabled = true;
     }
 }
