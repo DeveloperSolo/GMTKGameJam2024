@@ -154,6 +154,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3929226102550119253, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 182.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 54.68
+      objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_Name
       value: ScalablePlayerSummonTemplate

@@ -1207,7 +1207,7 @@ PrefabInstance:
       objectReference: {fileID: 644695380}
     - target: {fileID: 8321362387034715174, guid: 02902fd24c45e5a4793675ca89ac79f4, type: 3}
       propertyPath: spawnRate
-      value: 5
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1272,6 +1272,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1744075339357091103, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951728436165808793, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951728436165808793, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725864636176846663, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

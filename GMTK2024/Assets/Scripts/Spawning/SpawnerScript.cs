@@ -11,7 +11,7 @@ public class SpawnerScript : MonoBehaviour
 
     private void OnEnable()
     {
-        timeTillNextSpawn = spawnRate;
+        timeTillNextSpawn = 1.0f / spawnRate;
     }
 
     private void Update()
@@ -30,11 +30,11 @@ public class SpawnerScript : MonoBehaviour
         GameObject instance = manager.SpawnInstance();
         instance.transform.position = transform.position;
 
-        timeTillNextSpawn += spawnRate;
+        timeTillNextSpawn += 1.0f / spawnRate;
     }
 
-    public string GetValueForInfoDisplay()
+    public void GetValueForInfoDisplay(EntityInfoScript.Info info)
     {
-        return spawnRate.ToString("F1");
+        info.InfoValue = spawnRate.ToString("F2");
     }
 }

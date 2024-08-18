@@ -11,6 +11,7 @@ public class ScaleMechanicComponent : MonoBehaviour
     private Vector2 currentSize = Vector2.one;
     private Vector2 pivotPoint = DefaultPivotPoint;
 
+    public Vector2 CurrentSize { get { return currentSize; } }
     private static readonly Vector2 DefaultPivotPoint = new Vector2(0.5f, 0.5f);
 
     [Header("Components")]
@@ -21,6 +22,7 @@ public class ScaleMechanicComponent : MonoBehaviour
     private ScaleMechanicGizmoScript currentDraggingGizmo = null;
     private bool isDraggingGizmoEnabled = true;
     private List<ScaleMechanicListenerScript> listeners = new List<ScaleMechanicListenerScript>();
+    private List<ScaleMechanicListenerScript> listenersToRemove = new List<ScaleMechanicListenerScript>();
 
     public bool IsDraggingGizmoEnabled { get { return isDraggingGizmoEnabled; } }
 
@@ -32,6 +34,7 @@ public class ScaleMechanicComponent : MonoBehaviour
     private void Update()
     {
         UpdateDraggingGizmo();
+        ProcessListenersToRemove();
     }
 
     #region Gizmos
@@ -124,7 +127,16 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     public void RemoveListener(ScaleMechanicListenerScript listener)
     {
-        listeners.Remove(listener);
+        listenersToRemove.Add(listener);
+    }
+
+    private void ProcessListenersToRemove()
+    {
+        foreach(ScaleMechanicListenerScript listener in listenersToRemove)
+        {
+            listeners.Remove(listener);
+        }
+        listenersToRemove.Clear();
     }
 
     #endregion Listeners
@@ -244,7 +256,16 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     public void GetValueForInfoDisplay(EntityInfoScript.Info info)
     {
-        info.InfoValue = (currentSize.x * currentSize.y).ToString("F1");
+        int roundedValue = Mathf.FloorToInt(currentSize.x * currentSize.y * 10);
+        float value = (float)roundedValue / 10.0f;
+        if(value >= 1.0f)
+        {
+            info.InfoValue = Mathf.FloorToInt(value).ToString();
+        }
+        else
+        {
+            info.InfoValue = value.ToString();
+        }
     }
 
     #endregion Size/Scaling

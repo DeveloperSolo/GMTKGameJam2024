@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[1].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetSizeValueForInfoDisplay
+      value: GetValueForInfoDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[0].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

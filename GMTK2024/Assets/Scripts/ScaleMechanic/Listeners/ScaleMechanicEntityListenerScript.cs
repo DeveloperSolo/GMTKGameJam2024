@@ -9,6 +9,8 @@ public class ScaleMechanicEntityListenerScript : ScaleMechanicListenerScript
     private ScaleMechanicRectTransformListenerScript canvasListener;
     private ScaleMechanicSpriteListenerScript spriteListener;
 
+    private const float maxDeletionSize = 0.1f;
+
     private void Awake()
     {
         colliderListener = GetComponent<ScaleMechanicBoxColliderListenerScript>();
@@ -22,5 +24,10 @@ public class ScaleMechanicEntityListenerScript : ScaleMechanicListenerScript
 
         transform.position = new Vector3(Source.transform.position.x, Source.transform.position.y, transform.position.z);
         Source.transform.localPosition = new Vector3(0.0f, 0.0f, Source.transform.localPosition.z);
+
+        if((Source.CurrentSize.x * Source.CurrentSize.y) < maxDeletionSize)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
