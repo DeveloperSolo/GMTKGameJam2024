@@ -45,6 +45,11 @@ public class ScaleMechanicComponent : MonoBehaviour
         }
     }
 
+    public bool IsDraggingGizmo()
+    {
+        return currentDraggingGizmo != null;
+    }
+
     public void StartDraggingGizmo(ScaleMechanicGizmoScript gizmo)
     {
         currentDraggingGizmo = gizmo;
@@ -105,11 +110,6 @@ public class ScaleMechanicComponent : MonoBehaviour
     #endregion Listeners
 
     #region Size/Scaling
-
-    public bool IsScaling()
-    {
-        return currentDraggingGizmo != null;
-    }
 
     private void UpdateSize(ScaleMode scaleMode, Vector2 mouseDelta)
     {
@@ -220,6 +220,11 @@ public class ScaleMechanicComponent : MonoBehaviour
 
         DraggableEdge_Right.transform.localPosition = new Vector2(extents.x, 0.0f);
         DraggableEdge_Right.size = new Vector2(DraggableEdge_Right.size.x, EdgeSize.y);
+    }
+
+    public void GetSizeValueForInfoDisplay(EntityInfoScript.Info info)
+    {
+        info.InfoValue = (currentSize.x * currentSize.y).ToString("F1");
     }
 
     #endregion Size/Scaling

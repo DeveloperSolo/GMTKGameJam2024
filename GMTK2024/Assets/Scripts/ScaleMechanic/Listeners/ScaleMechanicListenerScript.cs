@@ -7,6 +7,8 @@ public class ScaleMechanicListenerScript : MonoBehaviour
     [SerializeField]
     private ScaleMechanicComponent source;
 
+    public ScaleMechanicComponent Source {  get { return source; } }
+
     private void OnDestroy()
     {
         source.RemoveListener(this);

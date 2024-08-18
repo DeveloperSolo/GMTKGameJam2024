@@ -38,6 +38,11 @@ public class TweenScript : MonoBehaviour
         Play(enableTweenName);
     }
 
+    private void OnDisable()
+    {
+        StopAll();
+    }
+
     private void Update()
     {
         if (activeList.Count > 0)
@@ -66,7 +71,13 @@ public class TweenScript : MonoBehaviour
         for(int i = 0; i < tweenList.Count; i++)
         {
             if (tweenList[i].name == tweenName)
+            {
                 activeList.Add(new ActiveTween(this, tweenList[i]));
+                if (activeList.Count == 1)
+                {
+                    SetValue(activeList[0].type, activeList[0].GetElapsedCurveValue());
+                }
+            }
         }
     }
 

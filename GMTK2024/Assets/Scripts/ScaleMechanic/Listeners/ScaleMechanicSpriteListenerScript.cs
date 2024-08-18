@@ -9,4 +9,9 @@ public class ScaleMechanicSpriteListenerScript : ScaleMechanicListenerScript
         transform.localPosition = newPosition;
         transform.localScale = newSize;
     }
+
+    protected override void OnScaleEnd()
+    {
+        transform.localPosition = Vector2.zero;
+    }
 }
