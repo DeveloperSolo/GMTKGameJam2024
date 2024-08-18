@@ -7,6 +7,5 @@ public class MainEnemyAITargetFinderScript : BaseAITargetFinderScript
     private void Start()
     {
         target = GameController.Instance.MainEnemy;
-        Debug.Log("Started");
     }
 }

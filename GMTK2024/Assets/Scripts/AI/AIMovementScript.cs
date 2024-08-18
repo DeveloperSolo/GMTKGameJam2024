@@ -51,4 +51,9 @@ public class AIMovementScript : MonoBehaviour
             rbody.velocity = Vector2.zero;
         }
     }
+
+    public void GetValueForInfoDisplay(EntityInfoScript.Info info)
+    {
+        info.InfoValue = moveSpeed.ToString("F1");
+    }
 }

@@ -477,7 +477,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 6786822017842438505}
           m_TargetAssemblyTypeName: ScaleMechanicComponent, Assembly-CSharp
-          m_MethodName: GetSizeValueForInfoDisplay
+          m_MethodName: GetValueForInfoDisplay
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -111,8 +111,3 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
     }
 }
-
-public interface IEntityInfoSource
-{
-    public abstract void GetSizeValueForInfoDisplay(EntityInfoScript.Info info);
-}

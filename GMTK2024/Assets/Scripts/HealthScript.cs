@@ -46,4 +46,9 @@ public class HealthScript : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(newHealth, 0, totalHealth);
     }
+
+    public void GetValueForInfoDisplay(EntityInfoScript.Info info)
+    {
+        info.InfoValue = currentHealth.ToString();
+    }
 }

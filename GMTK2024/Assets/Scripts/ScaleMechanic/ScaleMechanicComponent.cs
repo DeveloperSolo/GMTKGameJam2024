@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor.Presets;
 using UnityEngine;
 
-public class ScaleMechanicComponent : MonoBehaviour, IEntityInfoSource
+public class ScaleMechanicComponent : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField]
@@ -242,7 +242,7 @@ public class ScaleMechanicComponent : MonoBehaviour, IEntityInfoSource
         DraggableEdge_Right.size = new Vector2(DraggableEdge_Right.size.x, EdgeSize.y);
     }
 
-    public void GetSizeValueForInfoDisplay(EntityInfoScript.Info info)
+    public void GetValueForInfoDisplay(EntityInfoScript.Info info)
     {
         info.InfoValue = (currentSize.x * currentSize.y).ToString("F1");
     }

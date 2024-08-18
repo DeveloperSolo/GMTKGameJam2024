@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerScript : MonoBehaviour, IEntityInfoSource
+public class SpawnerScript : MonoBehaviour
 {
     [SerializeField] private SpawnManager manager;
     [SerializeField] private float spawnRate;
@@ -33,8 +33,8 @@ public class SpawnerScript : MonoBehaviour, IEntityInfoSource
         timeTillNextSpawn += spawnRate;
     }
 
-    public void GetSizeValueForInfoDisplay(EntityInfoScript.Info info)
+    public string GetValueForInfoDisplay()
     {
-        info.InfoValue = spawnRate.ToString("F1") + " units/s";
+        return spawnRate.ToString("F1");
     }
 }

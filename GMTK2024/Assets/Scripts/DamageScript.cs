@@ -53,4 +53,9 @@ public class DamageScript : MonoBehaviour
             }
         }
     }
+
+    public void GetValueForInfoDisplay(EntityInfoScript.Info info)
+    {
+        info.InfoValue = damage.ToString();
+    }
 }
