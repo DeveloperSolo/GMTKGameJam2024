@@ -86,7 +86,11 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         string text = "";
         foreach(Info info in infoList)
         {
-            text += info.InfoName + ": " + info.GetInfoValue();
+            text += info.InfoName + ": " + info.GetInfoValue() + "\n";
+        }
+        if(text.Length > 0)
+        {
+            text.Remove(text.Length - 1, 1);
         }
         infoText.text = text;
     }
@@ -106,4 +110,9 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
             return InfoValue;
         }
     }
+}
+
+public interface IEntityInfoSource
+{
+    public abstract void GetSizeValueForInfoDisplay(EntityInfoScript.Info info);
 }

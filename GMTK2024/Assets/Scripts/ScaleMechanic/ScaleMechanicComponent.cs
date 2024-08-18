@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor.Presets;
 using UnityEngine;
 
-public class ScaleMechanicComponent : MonoBehaviour
+public class ScaleMechanicComponent : MonoBehaviour, IEntityInfoSource
 {
     [Header("Settings")]
     [SerializeField]

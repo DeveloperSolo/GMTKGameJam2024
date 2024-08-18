@@ -7,6 +7,11 @@ public class GameController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Vector2 gameAreaSize;
 
+    [Header("Important Stuff")]
+    [SerializeField] private GameObject mainEnemy;
+    
+    public GameObject MainEnemy { get { return mainEnemy; } }
+
     private static GameController instance;
     public static GameController Instance { get { return instance; } }
 
