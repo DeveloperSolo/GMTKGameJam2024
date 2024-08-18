@@ -70,6 +70,7 @@ public class ScaleMechanicComponent : MonoBehaviour
     public void EnableDraggingGizmo()
     {
         isDraggingGizmoEnabled = true;
+        gameObject.SetActive(true);
     }
 
     public void DisableDraggingGizmo()
@@ -79,6 +80,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         {
             currentDraggingGizmo.EndDrag();
         }
+        gameObject.SetActive(false);
     }
 
     public void StartDraggingGizmo(ScaleMechanicGizmoScript gizmo)

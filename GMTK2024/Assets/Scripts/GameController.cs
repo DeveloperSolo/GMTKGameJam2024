@@ -38,6 +38,13 @@ public class GameController : MonoBehaviour
         return position;
     }
 
+    public bool IsOutOfGameArea(Vector3 position)
+    {
+        Vector2 limits = gameAreaSize / 2.0f;
+        return position.x < -limits.x || position.x > limits.x
+            || position.y < -limits.y || position.y > limits.y;
+    }
+
     public static bool GetMouseButtonDown(MouseButton button)
     {
         return Input.GetMouseButtonDown((int)button);

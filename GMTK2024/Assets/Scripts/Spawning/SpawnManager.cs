@@ -33,6 +33,7 @@ public class SpawnManager : MonoBehaviour
     private GameObject InstantiateInstance()
     {
         GameObject instance = Instantiate(prefab);
+        instance.transform.SetParent(transform);
         return instance;
     }
 

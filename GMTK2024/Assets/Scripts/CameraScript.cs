@@ -125,6 +125,8 @@ public class CameraScript : MonoBehaviour
         float orthographicSize = Camera.main.orthographicSize + change;
         orthographicSize = Mathf.Clamp(orthographicSize, minOrthographicSize, maxOrthographicSize);
         Camera.main.orthographicSize = orthographicSize;
+
+        transform.position = GameController.Instance.ClampToGameArea(transform.position, GetViewportWorldSize());
     }
 
     #endregion Camera Zooming

@@ -10,6 +10,8 @@ partial class AIControllerScript : MonoBehaviour
         Scaling,
         Wander,
         Pursue,
+        Attack,
+        Retreat,
         Damaged,
     }
 
@@ -19,6 +21,8 @@ partial class AIControllerScript : MonoBehaviour
         GenerateBehaviourToDictionary<AIScalingStateBehaviour>(behaviours);
         GenerateBehaviourToDictionary<AIWanderStateBehaviour>(behaviours);
         GenerateBehaviourToDictionary<AIPursueStateBehaviour>(behaviours);
+        GenerateBehaviourToDictionary<AIAttackStateBehaviour>(behaviours);
+        GenerateBehaviourToDictionary<AIRetreatStateBehaviour>(behaviours);
         GenerateBehaviourToDictionary<AIDamagedStateBehaviour>(behaviours);
         return behaviours;
     }
@@ -54,6 +58,109 @@ partial class AIControllerScript : MonoBehaviour
         }
     }
 
+    private class AIRetreatStateBehaviour : AIBaseStateBehaviour
+    {
+        public override AIState State => AIState.Retreat;
+
+        public override void OnEnter(AIControllerScript controller)
+        {
+            base.OnEnter(controller);
+        }
+
+        public override void OnExit(AIControllerScript controller)
+        {
+            base.OnExit(controller);
+        }
+
+        public override void OnUpdate(AIControllerScript controller, float elapsed)
+        {
+            base.OnUpdate(controller, elapsed);
+
+            if (controller.scaleMechanic.IsDraggingGizmo())
+            {
+                controller.SetState(AIState.Scaling);
+                return;
+            }
+
+            if (controller.attack != null)
+            {
+                if (!controller.attack.HasTargetTooClose())
+                {
+                    if(controller.attack.HasTargetInRange())
+                    {
+                        controller.SetState(AIState.Attack);
+                    }
+                    else
+                    {
+                        controller.SetState(AIState.Pursue);
+                    }
+                    return;
+                }
+            }
+
+            GameObject target = controller.GetTarget();
+            if (target == null)
+            {
+                controller.SetState(AIState.Wander);
+                return;
+            }
+
+            Vector3 targetPos = controller.transform.position - (target.transform.position - controller.transform.position);
+            controller.MoveToPosition(targetPos);
+        }
+    }
+
+    private class AIAttackStateBehaviour : AIBaseStateBehaviour
+    {
+        public override AIState State => AIState.Attack;
+
+        public override void OnEnter(AIControllerScript controller)
+        {
+            base.OnEnter(controller);
+            controller.attack.enabled = true;
+        }
+
+        public override void OnExit(AIControllerScript controller)
+        {
+            base.OnExit(controller);
+            controller.attack.enabled = false;
+        }
+
+        public override void OnUpdate(AIControllerScript controller, float elapsed)
+        {
+            base.OnUpdate(controller, elapsed);
+
+            if (controller.scaleMechanic.IsDraggingGizmo())
+            {
+                controller.SetState(AIState.Scaling);
+                return;
+            }
+
+            if (controller.attack != null)
+            {
+                if(controller.attack.HasTargetTooClose())
+                {
+                    controller.SetState(AIState.Retreat);
+                    return;
+                }
+                else if (!controller.attack.HasTargetInRange())
+                {
+                    controller.SetState(AIState.Pursue);
+                    return;
+                }
+            }
+
+            GameObject target = controller.GetTarget();
+            if (target == null)
+            {
+                controller.SetState(AIState.Wander);
+                return;
+            }
+
+            //controller.MoveToPosition(target.transform.position);
+        }
+    }
+
     private class AIPursueStateBehaviour : AIBaseStateBehaviour
     {
         public override AIState State => AIState.Pursue;
@@ -78,6 +185,15 @@ partial class AIControllerScript : MonoBehaviour
                 return;
             }
 
+            if(controller.attack != null)
+            {
+                if(controller.attack.HasTargetInRange())
+                {
+                    controller.SetState(AIState.Attack);
+                    return;
+                }
+            }
+
             GameObject target = controller.GetTarget();
             if (target == null)
             {
@@ -99,7 +215,7 @@ partial class AIControllerScript : MonoBehaviour
             base.OnEnter(controller);
 
             controller.MoveToRandomPosition();
-            wait = 1.0f;
+            wait = Random.Range(0.5f, 3.0f);
         }
 
         public override void OnExit(AIControllerScript controller)

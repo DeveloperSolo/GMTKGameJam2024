@@ -9,7 +9,9 @@ public partial class AIControllerScript : MonoBehaviour
     [SerializeField] private ScaleMechanicComponent scaleMechanic;
 
     private AIMovementScript movement;
+    private AIAttackScript attack;
     private BaseAITargetFinderScript targetFinder;
+    private SpawnerScript bulletSpawner;
 
     private AIBaseStateBehaviour currentBehaviour = null; 
     Dictionary<AIState, AIBaseStateBehaviour> allBehaviours = new Dictionary<AIState, AIBaseStateBehaviour>();
@@ -17,8 +19,15 @@ public partial class AIControllerScript : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<AIMovementScript>();
+        attack = GetComponent<AIAttackScript>();
+        bulletSpawner = GetComponent<SpawnerScript>();
         targetFinder = GetComponent<BaseAITargetFinderScript>();
         allBehaviours = GenerateBehaviours();
+
+        if(attack != null)
+        {
+            attack.enabled = false;
+        }
     }
 
     private void OnEnable()
@@ -66,7 +75,10 @@ public partial class AIControllerScript : MonoBehaviour
 
     private void MoveToRandomPosition()
     {
-        movement.TargetPosition = new Vector2(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f));
+        Vector2 targetPos = Vector2.zero;
+        targetPos += new Vector2(Random.Range(-9.0f, 9.0f), Random.Range(-9.0f, 9.0f));
+        targetPos = GameController.Instance.ClampToGameArea(targetPos, scaleMechanic.CurrentSize);
+        movement.TargetPosition = (Vector2)transform.position + targetPos;
     }
 
     private void MoveToPosition(Vector2 position)
