@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4647455354257304413}
   - component: {fileID: 4904127008958980910}
   m_Layer: 0
-  m_Name: MovableEntityTemplate
+  m_Name: ScalableAIEntityTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -120,9 +120,15 @@ public class ScaleMechanicComponent : MonoBehaviour
         {
             newSize = GetPreservedAspectRatio(scaleMode, newSize);
         }
-        UpdateSize(newSize);
 
-        UpdateSizeVisuals();
+        newSize.x = Mathf.Max(newSize.x, 0.0f);
+        newSize.y = Mathf.Max(newSize.y, 0.0f);
+
+        if (ResourceManager.Instance.TryGainOrSpendScaleResource(newSize - currentSize))
+        {
+            UpdateSize(newSize);
+            UpdateSizeVisuals();
+        }
         ResetPivotPoint();
     }
 
