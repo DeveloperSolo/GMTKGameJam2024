@@ -30,6 +30,14 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
     }
 
+    private void Start()
+    {
+        if(IsInfoShown())
+        {
+            HideInfo();
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         isPointerOver = true;
@@ -63,11 +71,19 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void ShowInfo()
     {
+        if(IsInfoShown())
+        {
+            return;
+        }
         infoCanvas.SetActive(true);
     }
 
     private void HideInfo()
     {
+        if (!IsInfoShown())
+        {
+            return;
+        }
         infoCanvas.SetActive(false);
     }
 

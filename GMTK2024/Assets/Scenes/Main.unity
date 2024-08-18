@@ -201,6 +201,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: limitedScaleMode
       value: 0
@@ -215,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8350882437730564365, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_LocalPosition.x
@@ -462,7 +470,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  defaultFocusTransform: {fileID: 0}
+  zoomSpeed: 200
+  minOrthographicSize: 2
+  maxOrthographicSize: 15
+  defaultFocusTransform: {fileID: 2368766497313864036}
 --- !u!1 &593907780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1316,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: limitedScaleMode
       value: 0
@@ -1313,13 +1332,17 @@ PrefabInstance:
       propertyPath: preserveAspectRatio
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6936374241432151375, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: listenWhenDisabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_Name
       value: ScalableResourceTemplate
       objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8350882437730564365, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1588,6 +1611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner_PlayerSummon (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1609253982832338714, guid: 02902fd24c45e5a4793675ca89ac79f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8321362387034715174, guid: 02902fd24c45e5a4793675ca89ac79f4, type: 3}
       propertyPath: manager
       value: 
@@ -1620,6 +1647,10 @@ PrefabInstance:
     - target: {fileID: 743690923897565399, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
       propertyPath: m_Name
       value: Enemy_main
+      objectReference: {fileID: 0}
+    - target: {fileID: 743690923897565399, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1744075339357091103, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
       propertyPath: m_LocalPosition.x

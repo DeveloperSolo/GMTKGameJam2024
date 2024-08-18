@@ -7,6 +7,11 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private float panningDuration = 1.0f;
     [SerializeField] private AnimationCurve panningCurve;
 
+    [Header("Camera Zoom Settings")]
+    [SerializeField] private float zoomSpeed = 1.0f;
+    [SerializeField] private float minOrthographicSize = 2.0f;
+    [SerializeField] private float maxOrthographicSize = 20.0f;
+
     private Coroutine panningCoroutine = null;
 
     [Header("Interaction Settings")]
@@ -19,11 +24,12 @@ public class CameraScript : MonoBehaviour
     {
         if(panningCoroutine != null)
         {
-            Debug.Log("help");
             return;
         }
 
-        if(GameController.GetMouseButtonUp(MouseButton.Middle))
+        ProcessCameraZooming(-Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime);
+
+        if (GameController.GetMouseButtonUp(MouseButton.Middle))
         {
             ResetToFocusObject();
             ProcessMovementByMouseDragging(true);
@@ -111,6 +117,17 @@ public class CameraScript : MonoBehaviour
     }
 
     #endregion Camera Panning
+
+    #region Camera Zooming
+    
+    private void ProcessCameraZooming(float change)
+    {
+        float orthographicSize = Camera.main.orthographicSize + change;
+        orthographicSize = Mathf.Clamp(orthographicSize, minOrthographicSize, maxOrthographicSize);
+        Camera.main.orthographicSize = orthographicSize;
+    }
+
+    #endregion Camera Zooming
 
     private Vector2 GetViewportWorldSize()
     {

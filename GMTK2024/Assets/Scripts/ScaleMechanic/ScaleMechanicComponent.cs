@@ -112,6 +112,7 @@ public class ScaleMechanicComponent : MonoBehaviour
             return;
         }
         currentDraggingGizmo = null;
+        HighlightGizmos(ScaleMode.None);
         SendEvent(ScaleMechanicEvent.EventType.End);
     }
 
@@ -123,9 +124,35 @@ public class ScaleMechanicComponent : MonoBehaviour
             newSize = GetPreservedAspectRatio(scaleMode, newSize);
         }
 
+        newSize.x = Mathf.Max(newSize.x, 0.0f);
+        newSize.y = Mathf.Max(newSize.y, 0.0f);
+
         if (ResourceManager.Instance.TryGainOrSpendScaleResource(newSize - currentSize))
         {
             UpdateSize(scaleMode, newSize);
+        }
+    }
+
+    public void HighlightGizmos(ScaleMode highlightMode)
+    {
+        bool isCombination = highlightMode.IsCombination();
+        foreach(Transform point in draggablePoints)
+        {
+            ScaleMechanicGizmoScript pointGizmo = point.GetComponent<ScaleMechanicGizmoScript>();
+            if(pointGizmo == null)
+            {
+                continue;
+            }
+
+            bool shouldHighlight = (isCombination) ? highlightMode == pointGizmo.ScaleMode : pointGizmo.ScaleMode.Contains(highlightMode);
+            if (shouldHighlight)
+            {
+                pointGizmo.StartHighlight();
+            }
+            else
+            {
+                pointGizmo.StopHighlight();
+            }
         }
     }
 
@@ -168,19 +195,15 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     public void RegisterListener(ScaleMechanicListenerScript listener)
     {
-        if (!listeners.Contains(listener))
+        if (!HasListener(listener))
         {
             listeners.Add(listener);
         }
     }
 
-    private void SendEvent(ScaleMechanicEvent.EventType type)
+    public bool HasListener(ScaleMechanicListenerScript listener)
     {
-        ScaleMechanicEvent ev = new ScaleMechanicEvent(type, transform.localPosition, currentSize);
-        foreach (ScaleMechanicListenerScript listener in listeners)
-        {
-            listener.Recieve(ev);
-        }
+        return listeners.Contains(listener);
     }
 
     public void RemoveListener(ScaleMechanicListenerScript listener)
@@ -195,6 +218,15 @@ public class ScaleMechanicComponent : MonoBehaviour
             listeners.Remove(listener);
         }
         listenersToRemove.Clear();
+    }
+
+    private void SendEvent(ScaleMechanicEvent.EventType type)
+    {
+        ScaleMechanicEvent ev = new ScaleMechanicEvent(type, transform.localPosition, currentSize);
+        foreach (ScaleMechanicListenerScript listener in listeners)
+        {
+            listener.Recieve(ev);
+        }
     }
 
     #endregion Listeners
@@ -411,5 +443,11 @@ static class ScaleModeMethods
     public static bool Contains(this ScaleMode scaleMode, ScaleMode other)
     {
         return (scaleMode & other) != ScaleMode.None;
+    }
+
+    public static bool IsCombination(this ScaleMode scaleMode)
+    {
+        bool hasOnlyOneBit = (scaleMode & (scaleMode - 1)) == ScaleMode.None;
+        return scaleMode != ScaleMode.None && !hasOnlyOneBit;
     }
 }
