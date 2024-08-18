@@ -78,7 +78,7 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private bool KeepInfoOpen()
     {
-        return scaleMechanic != null && scaleMechanic.IsDraggingGizmo();
+        return scaleMechanic != null && (scaleMechanic.IsDraggingGizmo() || scaleMechanic.IsManuallyScaling);
     }
 
     private void UpdateInfo()

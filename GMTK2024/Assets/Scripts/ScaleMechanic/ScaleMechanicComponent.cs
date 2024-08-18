@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEditor.Presets;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class ScaleMechanicComponent : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField]
-    private bool preserveAspectRatio = false;
+    [SerializeField] private bool preserveAspectRatio = false;
+    //[SerializeField] private Vector2 startSize;
 
     private Vector2 currentSize = Vector2.one;
     private Vector2 pivotPoint = DefaultPivotPoint;
@@ -21,14 +23,23 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     private ScaleMechanicGizmoScript currentDraggingGizmo = null;
     private bool isDraggingGizmoEnabled = true;
+    private bool isManuallyScaling = false;
     private List<ScaleMechanicListenerScript> listeners = new List<ScaleMechanicListenerScript>();
     private List<ScaleMechanicListenerScript> listenersToRemove = new List<ScaleMechanicListenerScript>();
 
     public bool IsDraggingGizmoEnabled { get { return isDraggingGizmoEnabled; } }
+    public bool IsManuallyScaling { get { return isManuallyScaling; } }
 
-    private void Start()
+    private void Awake()
     {
         InitializeGizmoScripts();
+    }
+
+    private void OnEnable()
+    {
+        //StartManualUpdateSize();
+        //ManualUpdateSize()
+        //EndManualUpdateSize();
     }
 
     private void Update()
@@ -91,7 +102,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         Vector2 posDiff = targetPosition - currPosition;
 
         ScaleMode scaleMode = currentDraggingGizmo.ScaleMode;
-        UpdateSize(scaleMode, posDiff);
+        UpdateSizeFromGizmoDragging(scaleMode, posDiff);
     }
 
     public void EndDraggingGizmo(ScaleMechanicGizmoScript gizmo)
@@ -104,7 +115,54 @@ public class ScaleMechanicComponent : MonoBehaviour
         SendEvent(ScaleMechanicEvent.EventType.End);
     }
 
+    private void UpdateSizeFromGizmoDragging(ScaleMode scaleMode, Vector2 mouseDelta)
+    {
+        Vector2 newSize = currentSize + GetSizeChange(scaleMode, mouseDelta);
+        if (preserveAspectRatio)
+        {
+            newSize = GetPreservedAspectRatio(scaleMode, newSize);
+        }
+
+        if (ResourceManager.Instance.TryGainOrSpendScaleResource(newSize - currentSize))
+        {
+            UpdateSize(scaleMode, newSize);
+        }
+    }
+
     #endregion Gizmos
+
+    #region Manipulators
+
+    public void StartManualUpdateSize()
+    {
+        SendEvent(ScaleMechanicEvent.EventType.Start);
+        isManuallyScaling = true;
+    }
+
+    public void EndManualUpdateSize()
+    {
+        SendEvent(ScaleMechanicEvent.EventType.End);
+        isManuallyScaling = false;
+    }
+
+    public void ManualUpdateSize(ScaleMode scaleMode, Vector2 newSize)
+    {
+        UpdateSize(scaleMode, newSize);
+    }
+
+    public void UpdateSizeFromManipulator(ScaleMode scaleMode, float addedAmount)
+    {
+        float newSizeAmount = (currentSize.x * currentSize.y) + addedAmount;
+        float aspectRatio = currentSize.x / currentSize.y;
+
+        Vector2 newSize = Vector2.zero;
+        newSize.y = Mathf.Sqrt(newSizeAmount / aspectRatio);
+        newSize.x = newSize.y * aspectRatio;
+
+        ManualUpdateSize(scaleMode, newSize);
+    }
+
+    #endregion Manipulators
 
     #region Listeners
 
@@ -143,15 +201,9 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     #region Size/Scaling
 
-    private void UpdateSize(ScaleMode scaleMode, Vector2 mouseDelta)
+    private void UpdateSize(ScaleMode scaleMode, Vector2 newSize)
     {
         SetPivotPoint(scaleMode);
-
-        Vector2 newSize = currentSize + GetSizeChange(scaleMode, mouseDelta);
-        if(preserveAspectRatio)
-        {
-            newSize = GetPreservedAspectRatio(scaleMode, newSize);
-        }
 
         newSize.x = Mathf.Max(newSize.x, 0.0f);
         newSize.y = Mathf.Max(newSize.y, 0.0f);
@@ -161,6 +213,7 @@ public class ScaleMechanicComponent : MonoBehaviour
             UpdateSize(newSize);
             UpdateSizeVisuals();
         }
+
         ResetPivotPoint();
     }
 
@@ -336,4 +389,27 @@ public class ScaleMechanicComponent : MonoBehaviour
     }
 
     #endregion Property Shortcuts
+}
+
+public enum ScaleMode
+{
+    None = 0b0000,
+
+    Top = 0b0001,
+    Left = 0b0010,
+    Bottom = 0b0100,
+    Right = 0b1000,
+
+    TopRight = Top | Right,
+    TopLeft = Top | Left,
+    BotLeft = Bottom | Left,
+    BotRight = Bottom | Right,
+}
+
+static class ScaleModeMethods
+{
+    public static bool Contains(this ScaleMode scaleMode, ScaleMode other)
+    {
+        return (scaleMode & other) != ScaleMode.None;
+    }
 }
