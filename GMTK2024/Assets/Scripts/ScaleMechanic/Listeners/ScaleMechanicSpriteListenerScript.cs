@@ -9,7 +9,7 @@ public class ScaleMechanicSpriteListenerScript : ScaleMechanicListenerScript
     protected override void Awake()
     {
         base.Awake();
-        sprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
+        sprites.AddRange(GetComponentsInChildren<SpriteRenderer>(true));
     }
 
     protected override void OnScaleUpdate(Vector2 newPosition, Vector2 newSize)
