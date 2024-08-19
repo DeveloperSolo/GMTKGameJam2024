@@ -5,7 +5,6 @@ using UnityEngine;
 public class ScaleMechanicListenerScript : MonoBehaviour
 {
     [SerializeField] private ScaleMechanicComponent source;
-    [SerializeField] private bool listenWhenDisabled = false;
 
     public ScaleMechanicComponent Source {  get { return source; } }
 
@@ -20,21 +19,6 @@ public class ScaleMechanicListenerScript : MonoBehaviour
     private void OnDestroy()
     {
         source.RemoveListener(this);
-    }
-
-    private void OnEnable()
-    {
-        //if(!source.HasListener(this))
-        //{
-        //    source.RegisterListener(this);
-        //}
-    }
-    private void OnDisable()
-    {
-        //if(!listenWhenDisabled)
-        //{
-        //    source.RemoveListener(this);
-        //}
     }
 
     public void Recieve(ScaleMechanicEvent ev)

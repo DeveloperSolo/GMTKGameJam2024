@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -91,6 +92,11 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public GameState GetState()
+    {
+        return currentState;
+    }
+
     public void SetState(GameState newState)
     {
         // exit
@@ -165,6 +171,23 @@ public class GameController : MonoBehaviour
             text = min + " min, " + text;
         }
         return text;
+    }
+
+    public Vector3 ClampToScreen(Vector3 position, Vector2 size)
+    {
+        Vector2 screenSize = Vector2.zero;
+        screenSize.y = Camera.main.orthographicSize * 2;
+        screenSize.x = screenSize.y / Screen.height * Screen.width;
+        Vector2 extentsLimit = (screenSize - size) / 2.0f;
+
+        Vector2 cameraPos = Camera.main.transform.position;
+        Vector2 minLimit = cameraPos - extentsLimit;
+        Vector2 maxLimit = cameraPos + extentsLimit;
+
+        position.x = Mathf.Clamp(position.x, minLimit.x, maxLimit.x);
+        position.y = Mathf.Clamp(position.y, minLimit.y, maxLimit.y);
+
+        return position;
     }
 
     public Vector3 ClampToGameArea(Vector3 position, Vector2 size)

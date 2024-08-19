@@ -43,6 +43,10 @@ public class ResourceManager : MonoBehaviour
         {
             return true;
         }
+        if(GameController.Instance.GetState() != GameState.Play)
+        {
+            return true;
+        }
         float resourceDiff = -scaleDiff.x - scaleDiff.y;
         resourceDiff *= (flipCost) ? -1 : 1;
         resourceDiff *= (resourceDiff > 0) ? gainMultiplier : lossMultiplier;
