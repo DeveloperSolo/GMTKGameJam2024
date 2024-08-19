@@ -39,6 +39,11 @@ public class BulletScript : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        gameObject.SetActive(false);
+    }
+
     public void DestroySelf()
     {
         Destroy(gameObject);
