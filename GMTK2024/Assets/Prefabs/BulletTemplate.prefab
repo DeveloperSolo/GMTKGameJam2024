@@ -225,10 +225,10 @@ MonoBehaviour:
   onDamageEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7003148152094701243}
-        m_TargetAssemblyTypeName: BulletScript, Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 1
+      - m_Target: {fileID: 6998848996792792917}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -240,10 +240,10 @@ MonoBehaviour:
   onKillEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7003148152094701243}
-        m_TargetAssemblyTypeName: BulletScript, Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 1
+      - m_Target: {fileID: 6998848996792792917}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

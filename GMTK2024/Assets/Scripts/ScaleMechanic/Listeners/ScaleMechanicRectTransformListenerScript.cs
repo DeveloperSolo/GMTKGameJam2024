@@ -6,8 +6,9 @@ public class ScaleMechanicRectTransformListenerScript : ScaleMechanicListenerScr
 {
     private RectTransform rectTransform;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rectTransform = GetComponent<RectTransform>();
     }
 

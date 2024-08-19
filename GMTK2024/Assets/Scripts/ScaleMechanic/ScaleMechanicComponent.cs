@@ -56,7 +56,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         StartManualUpdateSize();
         ManualUpdateSize(ScaleMode.None, startSize);
@@ -209,7 +209,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         }
 
         StartManualUpdateSize();
-        ManualUpdateSize(ScaleMode.None, currentSize + (other.CurrentSize * 0.1f));
+        ManualUpdateSize(ScaleMode.None, currentSize + (other.CurrentSize * 0.01f));
         EndManualUpdateSize();
     }
 

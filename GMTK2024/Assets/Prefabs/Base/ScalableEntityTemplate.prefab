@@ -69,8 +69,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Spawn Rate:  10.1 units/s\nHealth: \nDamage: "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 18afbb941d703e34a9fd60ec01a40f5f, type: 2}
+  m_sharedMaterial: {fileID: -8017032526859486348, guid: 18afbb941d703e34a9fd60ec01a40f5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -565,6 +565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 6786822017842438505}
   listenWhenDisabled: 0
+  statScalings: []
 --- !u!114 &6268793092702323179
 MonoBehaviour:
   m_ObjectHideFlags: 0

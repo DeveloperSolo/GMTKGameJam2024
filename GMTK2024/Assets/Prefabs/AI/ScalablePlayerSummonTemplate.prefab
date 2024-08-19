@@ -214,6 +214,254 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 5659691309575929442}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].statName
+      value: Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].statName
+      value: Mvt Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].statName
+      value: Atk
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].statName
+      value: Vision Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].statName
+      value: Atk Max Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].statName
+      value: Atk Max Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].statName
+      value: Atk Max Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].startValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].startValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].startValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].startValue
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].statPerScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6591951312221962884}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 534876436802307332}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3792315570828131512}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetHealthFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeedFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetDamageFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetRangeFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMaxRangeFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMaxRangeFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMaxRangeFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HealthScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIMovementScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DamageScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RangedAITargetFinderScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.size
       value: 4

@@ -63,6 +63,6 @@ public class ResourceManager : MonoBehaviour
     private void UpdateScaleResource(float newAmount)
     {
         currentScaleResource = Mathf.Max(newAmount, 0);
-        scaleResourceText.text = currentScaleResource.ToString("F1");
+        scaleResourceText.text = currentScaleResource.ToString("F1") + " scales left";
     }
 }

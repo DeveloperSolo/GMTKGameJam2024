@@ -9,6 +9,14 @@ public class ScaleMechanicListenerScript : MonoBehaviour
 
     public ScaleMechanicComponent Source {  get { return source; } }
 
+    protected virtual void Awake()
+    {
+        if (!source.HasListener(this))
+        {
+            source.RegisterListener(this);
+        }
+    }
+
     private void OnDestroy()
     {
         source.RemoveListener(this);
@@ -16,17 +24,17 @@ public class ScaleMechanicListenerScript : MonoBehaviour
 
     private void OnEnable()
     {
-        if(!source.HasListener(this))
-        {
-            source.RegisterListener(this);
-        }
+        //if(!source.HasListener(this))
+        //{
+        //    source.RegisterListener(this);
+        //}
     }
     private void OnDisable()
     {
-        if(!listenWhenDisabled)
-        {
-            source.RemoveListener(this);
-        }
+        //if(!listenWhenDisabled)
+        //{
+        //    source.RemoveListener(this);
+        //}
     }
 
     public void Recieve(ScaleMechanicEvent ev)

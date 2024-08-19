@@ -6,8 +6,9 @@ public class ScaleMechanicSpriteListenerScript : ScaleMechanicListenerScript
 {
     private List<SpriteRenderer> sprites = new List<SpriteRenderer>();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         sprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
     }
 

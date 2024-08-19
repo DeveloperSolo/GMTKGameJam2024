@@ -39,6 +39,11 @@ public class HealthScript : MonoBehaviour
         return currentHealth > 0;
     }
 
+    public void Kill()
+    {
+        TakeDamage(currentHealth);
+    }
+
     private void ResetHealth()
     {
         currentHealth = totalHealth;
@@ -46,8 +51,7 @@ public class HealthScript : MonoBehaviour
 
     private void UpdateHealth(int newHealth)
     {
-        //currentHealth = Mathf.Clamp(newHealth, 0, totalHealth);
-        currentHealth = Mathf.Max(newHealth, 0);
+        currentHealth = Mathf.Clamp(newHealth, 0, totalHealth);
     }
 
     public void GetValueForInfoDisplay(EntityInfoScript.Info info)
@@ -57,6 +61,9 @@ public class HealthScript : MonoBehaviour
 
     public void SetHealthFromScaling(float newTotalHealth)
     {
-        UpdateHealth(Mathf.FloorToInt(newTotalHealth));
+        float percent = (float)currentHealth / totalHealth;
+        totalHealth = Mathf.FloorToInt(newTotalHealth);
+        UpdateHealth(Mathf.FloorToInt((float)totalHealth * percent));
+        Debug.Log(name + " health scaled");
     }
 }

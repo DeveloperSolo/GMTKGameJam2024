@@ -9,10 +9,15 @@ public class AIAttackScript : MonoBehaviour
     [SerializeField] private float maxAttackRange;
     [SerializeField] private int attackDamage;
     [SerializeField] private float attackSpeed;
-    [SerializeField] private GameObject attackPrefab;
+    [SerializeField] private float attackAngle;
+    [SerializeField] private SpawnManager bulletManager;
 
     private BaseAITargetFinderScript targetFinder;
+
+    private float attackWaveDuration;
+    private float attackWaveCount;
     private float timeTillNextAttack = 0.0f;
+    private float attackCountRemainder;
 
     private ScaleMechanicComponent scalableOwner;
 
@@ -20,11 +25,7 @@ public class AIAttackScript : MonoBehaviour
     {
         targetFinder = GetComponent<BaseAITargetFinderScript>();
         scalableOwner = GetComponentInChildren<ScaleMechanicComponent>();
-    }
-
-    private void OnEnable()
-    {
-        timeTillNextAttack = 0.0f;
+        CalculateAttackRate();
     }
 
     private void Update()
@@ -65,17 +66,47 @@ public class AIAttackScript : MonoBehaviour
 
         SpawnAttack();
         timeTillNextAttack += 1.0f / attackSpeed;
-        Debug.Log("next attack: " + timeTillNextAttack);
     }
 
     private void SpawnAttack()
     {
         GameObject target = targetFinder.GetTarget();
-        Vector2 dir = (target.transform.position - transform.position).normalized;
+        Vector2 targetDir = (target.transform.position - transform.position).normalized;
 
-        GameObject instance = Instantiate(attackPrefab);
-        instance.transform.position = transform.position;
-        instance.GetComponent<BulletScript>().Initialize(dir, attackDamage, scalableOwner);
+        attackCountRemainder += attackWaveCount;
+        int count = Mathf.FloorToInt(attackCountRemainder);
+        attackCountRemainder -= count;
+
+        float angle = -attackAngle * (((float)count / 2) - 0.5f);
+        for (int i = 0; i < count; ++i)
+        {
+            Vector2 dir = new Vector2(
+                targetDir.x * Mathf.Cos(angle) - targetDir.y * Mathf.Sin(angle),
+                targetDir.x * Mathf.Sin(angle) + targetDir.y * Mathf.Cos(angle)
+            );
+
+            GameObject instance = bulletManager.SpawnInstance();
+            instance.transform.position = transform.position;
+            instance.GetComponent<BulletScript>().Initialize(dir, attackDamage, scalableOwner);
+
+            angle += attackAngle;
+        }
+    }
+
+    private void CalculateAttackRate()
+    {
+        if (attackSpeed <= 0)
+        {
+            attackWaveDuration = 0.0f;
+            attackWaveCount = 0.0f;
+            return;
+        }
+
+        attackWaveDuration = 1.0f / attackSpeed;
+        attackWaveCount = Mathf.Ceil(attackSpeed);
+        attackWaveDuration *= attackWaveCount;
+
+        timeTillNextAttack = attackWaveDuration;
     }
 
     public void GetDamageValueForInfoDisplay(EntityInfoScript.Info info)
@@ -96,6 +127,7 @@ public class AIAttackScript : MonoBehaviour
     public void SetSpeedFromScaling(float newSpeed)
     {
         attackSpeed = newSpeed;
+        CalculateAttackRate();
     }
 
     public void SetMinRangeFromScaling(float value)

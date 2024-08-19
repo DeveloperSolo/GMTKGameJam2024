@@ -8,6 +8,11 @@ public class SpawnManager : MonoBehaviour
 
     private List<GameObject> instances = new List<GameObject>();
 
+    private void OnDisable()
+    {
+        ResetAll();
+    }
+
     public GameObject SpawnInstance()
     {
         GameObject instance = FindAvailableInstance();

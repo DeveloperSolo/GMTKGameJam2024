@@ -10,8 +10,9 @@ public class ScaleMechanicSpawnerListenerScript : ScaleMechanicListenerScript
 
     private SpawnerScript spawner;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         spawner = GetComponent<SpawnerScript>();
     }
 
