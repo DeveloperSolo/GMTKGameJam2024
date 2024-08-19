@@ -192,6 +192,7 @@ public class ScaleMechanicComponent : MonoBehaviour
     {
         SendEvent(ScaleMechanicEvent.EventType.End);
         isManuallyScaling = false;
+        prevSetSize = currentSize;
     }
 
     public void ManualUpdateSize(ScaleMode scaleMode, Vector2 newSize)

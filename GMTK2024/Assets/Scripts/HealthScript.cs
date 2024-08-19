@@ -64,6 +64,5 @@ public class HealthScript : MonoBehaviour
         float percent = (float)currentHealth / totalHealth;
         totalHealth = Mathf.FloorToInt(newTotalHealth);
         UpdateHealth(Mathf.FloorToInt((float)totalHealth * percent));
-        Debug.Log(name + " health scaled");
     }
 }

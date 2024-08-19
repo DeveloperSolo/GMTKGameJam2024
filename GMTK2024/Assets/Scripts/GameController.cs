@@ -132,7 +132,7 @@ public class GameController : MonoBehaviour
             case GameState.Play:
                 HUD.SetActive(true);
                 cameraScript.enabled = true;
-                for(int i = 0; i < environmentRoot.childCount - 1; ++i)
+                for(int i = 0; i < environmentRoot.childCount; ++i)
                 {
                     environmentRoot.GetChild(i).gameObject.SetActive(true);
                 }
@@ -140,16 +140,22 @@ public class GameController : MonoBehaviour
                 break;
 
             case GameState.Win:
-                winScreen.SetActive(true);
-
-                Transform timeToSpareText = winScreen.transform.Find("Time_text");
-                if(timeToSpareText != null)
                 {
-                    timeToSpareText.GetComponent<TextMeshProUGUI>().text = "with " + GetTimeText(timeLimit - playTimeElapsed) + " to spare!";
+                    winScreen.SetActive(true);
+                    winScreen.transform.position = (Vector2)Camera.main.transform.position;
+
+                    Transform timeToSpareText = winScreen.transform.Find("Win_canvas/Time_text");
+                    if (timeToSpareText != null)
+                    {
+                        timeToSpareText.GetComponent<TextMeshProUGUI>().text = "with " + GetTimeText(timeLimit - playTimeElapsed) + " to spare!";
+                    }
                 }
                 break;
             case GameState.Lose:
-                loseScreen.SetActive(true);
+                {
+                    loseScreen.SetActive(true);
+                    loseScreen.transform.position = (Vector2)Camera.main.transform.position;
+                }
                 break;
         }
         currentState = newState;
