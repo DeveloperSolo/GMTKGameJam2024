@@ -6636,7 +6636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1614275350178951075, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
       propertyPath: statScalings.Array.data[0].statPerScale
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1614275350178951075, guid: 2c798d5e62ad14346bf56f82add0c6b8, type: 3}
       propertyPath: statScalings.Array.data[1].statPerScale

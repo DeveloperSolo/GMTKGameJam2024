@@ -39,6 +39,7 @@ public class SpawnManager : MonoBehaviour
     {
         GameObject instance = Instantiate(prefab);
         instance.transform.SetParent(transform);
+        instances.Add(instance);
         return instance;
     }
 

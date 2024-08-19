@@ -30,18 +30,13 @@ public class BulletScript : MonoBehaviour
         lifeTime -= Time.deltaTime;
         if(lifeTime <= 0.0f || GameController.Instance.IsOutOfGameArea(transform.position))
         {
-            DestroySelf();
+            gameObject.SetActive(false);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        DestroySelf();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        DestroySelf();
+        gameObject.SetActive(false);
     }
 
     public void DestroySelf()

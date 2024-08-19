@@ -207,7 +207,7 @@ public class ScaleMechanicComponent : MonoBehaviour
             return;
         }
 
-        if(currentSize.x * currentSize.y > 20.0f)
+        if(currentSize.x * currentSize.y > 30.0f)
         {
             return;
         }
