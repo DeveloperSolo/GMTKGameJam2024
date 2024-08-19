@@ -122,7 +122,7 @@ public class ScaleMechanicComponent : MonoBehaviour
 
         Vector2 currPosition = currentDraggingGizmo.transform.position;
         Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetPosition = GameController.Instance.ClampToScreen(targetPosition, Vector2.zero);
+        targetPosition = GameController.Instance.SmartClampToGameArea(targetPosition, Vector2.zero);
         Vector2 posDiff = targetPosition - currPosition;
 
         ScaleMode scaleMode = currentDraggingGizmo.ScaleMode;

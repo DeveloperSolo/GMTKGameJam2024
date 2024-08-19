@@ -200,6 +200,17 @@ public class GameController : MonoBehaviour
         return position;
     }
 
+    public Vector3 SmartClampToGameArea(Vector3 position, Vector2 size)
+    {
+        switch (currentState)
+        {
+            case GameState.Play:
+                return ClampToGameArea(position, size);
+            default:
+                return ClampToScreen(position, size);
+        }
+    }
+
     public bool IsOutOfGameArea(Vector3 position)
     {
         Vector2 limits = gameAreaSize / 2.0f;
