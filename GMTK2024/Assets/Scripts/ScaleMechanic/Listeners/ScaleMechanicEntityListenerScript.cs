@@ -28,7 +28,7 @@ public class ScaleMechanicEntityListenerScript : ScaleMechanicListenerScript
         if((Source.CurrentSize.x * Source.CurrentSize.y) < maxDeletionSize)
         {
             HealthScript health = GetComponent<HealthScript>();
-            if(health != null)
+            if(health != null && health.enabled)
             {
                 health.Kill();
             }

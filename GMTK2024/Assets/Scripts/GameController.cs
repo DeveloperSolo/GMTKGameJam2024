@@ -143,8 +143,9 @@ public class GameController : MonoBehaviour
                 {
                     winScreen.SetActive(true);
                     winScreen.transform.position = (Vector2)Camera.main.transform.position;
+                    Camera.main.orthographicSize = 5.0f;
 
-                    Transform timeToSpareText = winScreen.transform.Find("Win_canvas/Time_text");
+                    Transform timeToSpareText = winScreen.transform.Find("Time_text/Entity_Canvas/Mask/Text (TMP)");
                     if (timeToSpareText != null)
                     {
                         timeToSpareText.GetComponent<TextMeshProUGUI>().text = "with " + GetTimeText(timeLimit - playTimeElapsed) + " to spare!";
@@ -155,6 +156,7 @@ public class GameController : MonoBehaviour
                 {
                     loseScreen.SetActive(true);
                     loseScreen.transform.position = (Vector2)Camera.main.transform.position;
+                    Camera.main.orthographicSize = 5.0f;
                 }
                 break;
         }
