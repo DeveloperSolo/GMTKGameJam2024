@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3291352968341966926}
   - component: {fileID: 5070560655273641337}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 5339096653932056315}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.135, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1577414713039410295}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45025d0627d934944bbde78a79fbc319, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5105be824186404380aa4d406076ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 3
   maxReachDistance: 1
 --- !u!50 &7545006628754963029
 Rigidbody2D:
@@ -504,10 +504,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   knockbackStrength: 200
-  onDamagedEvent:
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  onDamageEvent:
     m_PersistentCalls:
       m_Calls: []
-  onDeathEvent:
+  onKillEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7088373975867907984

@@ -15,13 +15,13 @@ public class AIMovementScript : MonoBehaviour
     private Vector2 targetPosition;
     public Vector2 TargetPosition { get { return targetPosition; } set { targetPosition = value; isMoving = true; } }
 
-    [Header("Components")]
-
     private Rigidbody2D rbody;
+    private ScaleMechanicComponent scaleMechanic;
 
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
+        scaleMechanic = GetComponentInChildren<ScaleMechanicComponent>();
     }
 
     private void FixedUpdate()
@@ -41,6 +41,15 @@ public class AIMovementScript : MonoBehaviour
             return;
         }
         rbody.velocity = posDiff / distanceLeft * moveSpeed;
+
+        if(scaleMechanic != null)
+        {
+            transform.position = GameController.Instance.ClampToGameArea(transform.position, scaleMechanic.CurrentSize);
+        }
+        else
+        {
+            transform.position = GameController.Instance.ClampToGameArea(transform.position, Vector2.one);
+        }
     }
 
     public void Interrupt()
@@ -55,5 +64,10 @@ public class AIMovementScript : MonoBehaviour
     public void GetValueForInfoDisplay(EntityInfoScript.Info info)
     {
         info.InfoValue = moveSpeed.ToString("F1");
+    }
+
+    public void SetSpeedFromScaling(float newSpeed)
+    {
+        moveSpeed = newSpeed;
     }
 }

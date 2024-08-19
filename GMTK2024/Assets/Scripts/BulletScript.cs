@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float speed;
 
-    public void Initialize(Vector2 dir)
+    public void Initialize(Vector2 dir, int damage, ScaleMechanicComponent owner)
     {
-        transform.forward = dir;
+        transform.up = dir;
         GetComponent<Rigidbody2D>().velocity = dir * speed;
+        DamageScript damageScript = GetComponent<DamageScript>();
+        damageScript.SetDamageFromScaling(damage);
+
+        if(owner != null)
+        {
+            damageScript.ScalableOwner = owner;
+        }
     }
 
     private void Update()

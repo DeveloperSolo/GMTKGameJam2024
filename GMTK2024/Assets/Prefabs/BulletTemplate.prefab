@@ -219,7 +219,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   knockbackStrength: 100
-  onDamagedEvent:
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
+  onDamageEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7003148152094701243}
@@ -234,7 +237,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onDeathEvent:
+  onKillEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7003148152094701243}

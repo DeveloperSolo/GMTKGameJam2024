@@ -7,15 +7,19 @@ public class AIAttackScript : MonoBehaviour
 {
     [SerializeField] private float minAttackRange;
     [SerializeField] private float maxAttackRange;
+    [SerializeField] private int attackDamage;
     [SerializeField] private float attackSpeed;
     [SerializeField] private GameObject attackPrefab;
 
     private BaseAITargetFinderScript targetFinder;
     private float timeTillNextAttack = 0.0f;
 
+    private ScaleMechanicComponent scalableOwner;
+
     private void Awake()
     {
         targetFinder = GetComponent<BaseAITargetFinderScript>();
+        scalableOwner = GetComponentInChildren<ScaleMechanicComponent>();
     }
 
     private void OnEnable()
@@ -61,6 +65,7 @@ public class AIAttackScript : MonoBehaviour
 
         SpawnAttack();
         timeTillNextAttack += 1.0f / attackSpeed;
+        Debug.Log("next attack: " + timeTillNextAttack);
     }
 
     private void SpawnAttack()
@@ -70,6 +75,36 @@ public class AIAttackScript : MonoBehaviour
 
         GameObject instance = Instantiate(attackPrefab);
         instance.transform.position = transform.position;
-        instance.GetComponent<BulletScript>().Initialize(dir);
+        instance.GetComponent<BulletScript>().Initialize(dir, attackDamage, scalableOwner);
+    }
+
+    public void GetDamageValueForInfoDisplay(EntityInfoScript.Info info)
+    {
+        info.InfoValue = attackDamage.ToString();
+    }
+
+    public void GetSpeedValueForInfoDisplay(EntityInfoScript.Info info)
+    {
+        info.InfoValue = attackSpeed.ToString();
+    }
+
+    public void SetDamageFromScaling(float newDamage)
+    {
+        attackDamage = Mathf.FloorToInt(newDamage);
+    }
+
+    public void SetSpeedFromScaling(float newSpeed)
+    {
+        attackSpeed = newSpeed;
+    }
+
+    public void SetMinRangeFromScaling(float value)
+    {
+        minAttackRange = value;
+    }
+
+    public void SetMaxRangeFromScaling(float value)
+    {
+        maxAttackRange = value;
     }
 }

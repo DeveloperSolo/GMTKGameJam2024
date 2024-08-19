@@ -45,6 +45,12 @@ public class GameController : MonoBehaviour
             || position.y < -limits.y || position.y > limits.y;
     }
 
+    public Vector2 GetRandomPositionInGameArea(Vector2 size)
+    {
+        Vector2 limits = (gameAreaSize - size) / 2.0f;
+        return new Vector2(Random.Range(-limits.x, limits.x), Random.Range(-limits.y, limits.y));
+    }
+
     public static bool GetMouseButtonDown(MouseButton button)
     {
         return Input.GetMouseButtonDown((int)button);

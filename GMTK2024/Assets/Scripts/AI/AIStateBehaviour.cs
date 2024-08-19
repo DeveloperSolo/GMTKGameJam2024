@@ -65,11 +65,13 @@ partial class AIControllerScript : MonoBehaviour
         public override void OnEnter(AIControllerScript controller)
         {
             base.OnEnter(controller);
+            controller.attack.enabled = true;
         }
 
         public override void OnExit(AIControllerScript controller)
         {
             base.OnExit(controller);
+            controller.attack.enabled = false;
         }
 
         public override void OnUpdate(AIControllerScript controller, float elapsed)
@@ -209,6 +211,7 @@ partial class AIControllerScript : MonoBehaviour
     {
         public override AIState State => AIState.Wander;
         private float wait;
+        private float maxWanderDuration;
 
         public override void OnEnter(AIControllerScript controller)
         {
@@ -216,6 +219,7 @@ partial class AIControllerScript : MonoBehaviour
 
             controller.MoveToRandomPosition();
             wait = Random.Range(0.5f, 3.0f);
+            maxWanderDuration = 5.0f;
         }
 
         public override void OnExit(AIControllerScript controller)
@@ -238,7 +242,16 @@ partial class AIControllerScript : MonoBehaviour
                 return;
             }
 
-            if(controller.movement.IsMoving)
+            if (maxWanderDuration > 0.0f)
+            {
+                maxWanderDuration -= elapsed;
+                if(maxWanderDuration <= 0.0f)
+                {
+                    controller.SetState(AIState.Wander);
+                    return;
+                }
+            }
+            if (controller.movement.IsMoving)
             {
                 return;
             }

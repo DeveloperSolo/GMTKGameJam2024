@@ -45,7 +45,7 @@ public partial class AIControllerScript : MonoBehaviour
 
     public void IsDamaged()
     {
-        SetState(AIState.Damaged);
+        //SetState(AIState.Damaged);
     }
 
     private void ResetState()
@@ -75,10 +75,13 @@ public partial class AIControllerScript : MonoBehaviour
 
     private void MoveToRandomPosition()
     {
-        Vector2 targetPos = Vector2.zero;
-        targetPos += new Vector2(Random.Range(-9.0f, 9.0f), Random.Range(-9.0f, 9.0f));
-        targetPos = GameController.Instance.ClampToGameArea(targetPos, scaleMechanic.CurrentSize);
-        movement.TargetPosition = (Vector2)transform.position + targetPos;
+        //Vector2 targetPos = Vector2.zero;
+        //targetPos += new Vector2(Random.Range(-9.0f, 9.0f), Random.Range(-9.0f, 9.0f));
+        //targetPos = GameController.Instance.ClampToGameArea(targetPos, scaleMechanic.CurrentSize);
+        //movement.TargetPosition = (Vector2)transform.position + targetPos;
+
+        Vector2 randPos = GameController.Instance.GetRandomPositionInGameArea(scaleMechanic.CurrentSize);
+        movement.TargetPosition = randPos;
     }
 
     private void MoveToPosition(Vector2 position)

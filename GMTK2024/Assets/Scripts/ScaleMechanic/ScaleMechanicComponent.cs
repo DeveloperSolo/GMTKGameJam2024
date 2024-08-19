@@ -6,13 +6,23 @@ using static UnityEngine.UI.CanvasScaler;
 
 public class ScaleMechanicComponent : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] private bool preserveAspectRatio = false;
-    //[SerializeField] private Vector2 startSize;
+    [Header("Cost Settings")]
+    [SerializeField] private bool flipCost = false;
+    [SerializeField] private float gainResourceMultiplier = 1.0f;
+    [SerializeField] private float lossResourceMultiplier = 1.0f;
 
+
+    [Header("Scaling Settings")]
+    [SerializeField] private bool alwaysPreserveAspectRatio = false;
+    [SerializeField] private bool enableInputGrow = true;
+    [SerializeField] private bool enableInputShrink = true;
+    [SerializeField] private Vector2 startSize = Vector2.one;
+
+    private Vector2 prevSetSize = Vector2.one;
     private Vector2 currentSize = Vector2.one;
     private Vector2 pivotPoint = DefaultPivotPoint;
 
+    public Vector2 StartSize { get { return startSize; } }
     public Vector2 CurrentSize { get { return currentSize; } }
     private static readonly Vector2 DefaultPivotPoint = new Vector2(0.5f, 0.5f);
 
@@ -33,13 +43,24 @@ public class ScaleMechanicComponent : MonoBehaviour
     private void Awake()
     {
         InitializeGizmoScripts();
+
+        HealthScript health = GetComponentInParent<HealthScript>();
+        if(health != null)
+        {
+            health.ScalableOwner = this;
+        }
+        DamageScript damage = GetComponentInParent<DamageScript>();
+        if(damage != null)
+        {
+            damage.ScalableOwner = this;
+        }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        //StartManualUpdateSize();
-        //ManualUpdateSize()
-        //EndManualUpdateSize();
+        StartManualUpdateSize();
+        ManualUpdateSize(ScaleMode.None, startSize);
+        EndManualUpdateSize();
     }
 
     private void Update()
@@ -104,7 +125,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         Vector2 posDiff = targetPosition - currPosition;
 
         ScaleMode scaleMode = currentDraggingGizmo.ScaleMode;
-        UpdateSizeFromGizmoDragging(scaleMode, posDiff);
+        UpdateSizeFromGizmoDragging(scaleMode, posDiff, Input.GetKey(KeyCode.LeftShift));
     }
 
     public void EndDraggingGizmo(ScaleMechanicGizmoScript gizmo)
@@ -114,14 +135,15 @@ public class ScaleMechanicComponent : MonoBehaviour
             return;
         }
         currentDraggingGizmo = null;
+        prevSetSize = currentSize;
         HighlightGizmos(ScaleMode.None);
         SendEvent(ScaleMechanicEvent.EventType.End);
     }
 
-    private void UpdateSizeFromGizmoDragging(ScaleMode scaleMode, Vector2 mouseDelta)
+    private void UpdateSizeFromGizmoDragging(ScaleMode scaleMode, Vector2 mouseDelta, bool preserveAspectRatio)
     {
-        Vector2 newSize = currentSize + GetSizeChange(scaleMode, mouseDelta);
-        if (preserveAspectRatio)
+        Vector2 newSize = currentSize + GetSizeChangeFromDragging(scaleMode, mouseDelta);
+        if (alwaysPreserveAspectRatio || preserveAspectRatio)
         {
             newSize = GetPreservedAspectRatio(scaleMode, newSize);
         }
@@ -129,7 +151,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         newSize.x = Mathf.Max(newSize.x, 0.0f);
         newSize.y = Mathf.Max(newSize.y, 0.0f);
 
-        if (ResourceManager.Instance.TryGainOrSpendScaleResource(newSize - currentSize))
+        if (ResourceManager.Instance.TryGainOrSpendScaleResource(newSize - currentSize, gainResourceMultiplier, lossResourceMultiplier, flipCost))
         {
             UpdateSize(scaleMode, newSize);
         }
@@ -177,6 +199,18 @@ public class ScaleMechanicComponent : MonoBehaviour
     public void ManualUpdateSize(ScaleMode scaleMode, Vector2 newSize)
     {
         UpdateSize(scaleMode, newSize);
+    }
+
+    public void StealSizeFrom(ScaleMechanicComponent other)
+    {
+        if(other == null)
+        {
+            return;
+        }
+
+        StartManualUpdateSize();
+        ManualUpdateSize(ScaleMode.None, currentSize + (other.CurrentSize * 0.1f));
+        EndManualUpdateSize();
     }
 
     public void UpdateSizeFromManipulator(ScaleMode scaleMode, float addedAmount)
@@ -239,14 +273,8 @@ public class ScaleMechanicComponent : MonoBehaviour
     {
         SetPivotPoint(scaleMode);
 
-        newSize.x = Mathf.Max(newSize.x, 0.0f);
-        newSize.y = Mathf.Max(newSize.y, 0.0f);
-
-        if (ResourceManager.Instance.TryGainOrSpendScaleResource(newSize - currentSize))
-        {
-            UpdateSize(newSize);
-            UpdateSizeVisuals();
-        }
+        UpdateSize(newSize);
+        UpdateSizeVisuals();
 
         ResetPivotPoint();
     }
@@ -264,7 +292,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         SendEvent(ScaleMechanicEvent.EventType.Update);
     }
 
-    private Vector2 GetSizeChange(ScaleMode scaleMode, Vector2 mouseDelta)
+    private Vector2 GetSizeChangeFromDragging(ScaleMode scaleMode, Vector2 mouseDelta)
     {
         Vector2 sizeChange = mouseDelta;
         if (scaleMode.Contains(ScaleMode.Bottom))
@@ -283,31 +311,42 @@ public class ScaleMechanicComponent : MonoBehaviour
         {
             sizeChange.x = 0.0f;
         }
+
+        if (!enableInputGrow)
+        {
+            sizeChange.x = Mathf.Min(sizeChange.x, 0);
+            sizeChange.y = Mathf.Min(sizeChange.y, 0);
+        }
+        if (!enableInputShrink)
+        {
+            sizeChange.x = Mathf.Max(sizeChange.x, 0);
+            sizeChange.y = Mathf.Max(sizeChange.y, 0);
+        }
         return sizeChange;
     }
 
     private Vector2 GetPreservedAspectRatio(ScaleMode scaleMode, Vector2 newSize)
     {
-        float currentAspectRatio = currentSize.x / currentSize.y;
+        float prevAspectRatio = prevSetSize.x / prevSetSize.y;
 
         if (scaleMode.Contains(ScaleMode.Top | ScaleMode.Bottom) && !scaleMode.Contains(ScaleMode.Left | ScaleMode.Right))
         {
-            newSize.x = currentAspectRatio * newSize.y;
+            newSize.x = prevAspectRatio * newSize.y;
         }
         else if (scaleMode.Contains(ScaleMode.Left | ScaleMode.Right) && !scaleMode.Contains(ScaleMode.Top | ScaleMode.Bottom))
         {
-            newSize.y = newSize.x / currentAspectRatio;
+            newSize.y = newSize.x / prevAspectRatio;
         }
         else
         {
             float newAspectRatio = newSize.x / newSize.y;
-            if(newAspectRatio > currentAspectRatio)
+            if(newAspectRatio > prevAspectRatio)
             {
-                newSize.y = newSize.x / currentAspectRatio;
+                newSize.y = newSize.x / prevAspectRatio;
             }
             else
             {
-                newSize.x = currentAspectRatio * newSize.y;
+                newSize.x = prevAspectRatio * newSize.y;
             }
         }
         return newSize;

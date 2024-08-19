@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+using UnityEngine.Events;
 
 public class ScaleMechanicEntityListenerScript : ScaleMechanicListenerScript
 {
-    private ScaleMechanicBoxColliderListenerScript colliderListener;
-    private ScaleMechanicRectTransformListenerScript canvasListener;
-    private ScaleMechanicSpriteListenerScript spriteListener;
-
+    [SerializeField] private List<EntityStatScaling> statScalings;
     private const float maxDeletionSize = 0.1f;
 
-    private void Awake()
+    protected override void OnScaleUpdate(Vector2 newPosition, Vector2 newSize)
     {
-        colliderListener = GetComponent<ScaleMechanicBoxColliderListenerScript>();
-        canvasListener = GetComponentInChildren<ScaleMechanicRectTransformListenerScript>();
-        spriteListener = GetComponentInChildren<ScaleMechanicSpriteListenerScript>();
+        base.OnScaleUpdate(newPosition, newSize);
+
+        foreach(EntityStatScaling statScaling in statScalings)
+        {
+            statScaling.SetStat(this);
+        }
     }
 
     protected override void OnScaleEnd()
@@ -29,5 +29,30 @@ public class ScaleMechanicEntityListenerScript : ScaleMechanicListenerScript
         {
             gameObject.SetActive(false);
         }
+    }
+}
+
+[System.Serializable]
+public struct EntityStatScaling
+{
+    [SerializeField] private string statName;
+    [SerializeField] private float startValue;
+    [SerializeField] private float statPerScale;
+    [SerializeField] private UnityEvent<float> StatSetter;
+
+    public void SetStat(ScaleMechanicEntityListenerScript entityListener)
+    {
+        SetStat(entityListener.Source.StartSize, entityListener.Source.CurrentSize);
+    }
+
+    public void SetStat(Vector2 startSize, Vector2 currentSize)
+    {
+        SetStat(startSize.x * startSize.y, currentSize.x * currentSize.y);
+    }
+
+    public void SetStat(float startSize, float currentSize)
+    {
+        float newStat = startValue + ((currentSize - 1) * statPerScale);
+        StatSetter.Invoke(newStat);
     }
 }

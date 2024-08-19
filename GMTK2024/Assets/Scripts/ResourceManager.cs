@@ -37,13 +37,16 @@ public class ResourceManager : MonoBehaviour
         ResetResources();
     }
 
-    public bool TryGainOrSpendScaleResource(Vector2 scaleDiff)
+    public bool TryGainOrSpendScaleResource(Vector2 scaleDiff, float gainMultiplier, float lossMultiplier, bool flipCost = false)
     {
         if(isDebugMode)
         {
             return true;
         }
         float resourceDiff = -scaleDiff.x - scaleDiff.y;
+        resourceDiff *= (flipCost) ? -1 : 1;
+        resourceDiff *= (resourceDiff > 0) ? gainMultiplier : lossMultiplier;
+
         if (resourceDiff < 0.0f && Mathf.Abs(resourceDiff) > currentScaleResource)
         {
             return false;
@@ -60,6 +63,6 @@ public class ResourceManager : MonoBehaviour
     private void UpdateScaleResource(float newAmount)
     {
         currentScaleResource = Mathf.Max(newAmount, 0);
-        scaleResourceText.text = Mathf.FloorToInt(currentScaleResource).ToString();
+        scaleResourceText.text = currentScaleResource.ToString("F1");
     }
 }

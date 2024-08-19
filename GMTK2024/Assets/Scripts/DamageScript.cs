@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DamageScript : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private int damage;
     [SerializeField] private float knockbackStrength;
+    [SerializeField] private LayerMask mask;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent onDamagedEvent;
-    [SerializeField] private UnityEvent onDeathEvent;
+    [SerializeField] private UnityEvent onDamageEvent;
+    [SerializeField] private UnityEvent onKillEvent;
+
+    public UnityEvent OnDamage { get { return onDamageEvent; } }
+    public UnityEvent OnKill { get { return onKillEvent; } }
+
+    public ScaleMechanicComponent ScalableOwner { get; set; }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -33,23 +41,33 @@ public class DamageScript : MonoBehaviour
 
     private void DealDamage(HealthScript health)
     {
+        if(mask != (mask | (1 << health.gameObject.layer)))
+        {
+            return;
+        }
+
         health.TakeDamage(damage);
         if (health.IsAlive())
         {
-            onDamagedEvent?.Invoke();
+            onDamageEvent?.Invoke();
+
+            if (knockbackStrength > 0)
+            {
+                Rigidbody2D rbody = health.GetComponent<Rigidbody2D>();
+                if (rbody != null)
+                {
+                    Vector2 dir = (rbody.transform.position - transform.position).normalized;
+                    rbody.AddForce(dir * knockbackStrength);
+                }
+            }
         }
         else
         {
-            onDeathEvent?.Invoke();
-        }
+            onKillEvent?.Invoke();
 
-        if(knockbackStrength > 0)
-        {
-            Rigidbody2D rbody = health.GetComponent<Rigidbody2D>();
-            if(rbody != null)
+            if(ScalableOwner != null)
             {
-                Vector2 dir = (rbody.transform.position - transform.position).normalized;
-                rbody.AddForce(dir * knockbackStrength);
+                ScalableOwner.StealSizeFrom(health.ScalableOwner);
             }
         }
     }
@@ -57,5 +75,10 @@ public class DamageScript : MonoBehaviour
     public void GetValueForInfoDisplay(EntityInfoScript.Info info)
     {
         info.InfoValue = damage.ToString();
+    }
+
+    public void SetDamageFromScaling(float newDamage)
+    {
+        damage = Mathf.FloorToInt(newDamage);
     }
 }

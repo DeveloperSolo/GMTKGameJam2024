@@ -10,4 +10,13 @@ public class BaseAITargetFinderScript : MonoBehaviour
     {
         return target;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        if (target != null)
+        {
+            Gizmos.DrawSphere(target.transform.position, 0.25f);
+        }
+    }
 }

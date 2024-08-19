@@ -15,12 +15,17 @@ public class RangedAITargetFinderScript : BaseAITargetFinderScript
         float minDistance = 0.0f;
         foreach(RaycastHit2D hit in hits)
         {
-            float distance = hit.distance;
+            float distance = (hit.collider.transform.position - transform.position).sqrMagnitude;
             if(target == null || distance < minDistance)
             {
                 target = hit.rigidbody.gameObject;
                 minDistance = distance;
             }
         }
+    }
+
+    public void SetRangeFromScaling(float value)
+    {
+        range = value;
     }
 }

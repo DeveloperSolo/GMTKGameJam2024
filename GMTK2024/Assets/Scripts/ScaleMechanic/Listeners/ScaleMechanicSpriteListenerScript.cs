@@ -4,10 +4,27 @@ using UnityEngine;
 
 public class ScaleMechanicSpriteListenerScript : ScaleMechanicListenerScript
 {
+    private List<SpriteRenderer> sprites = new List<SpriteRenderer>();
+
+    private void Awake()
+    {
+        sprites.AddRange(GetComponentsInChildren<SpriteRenderer>());
+    }
+
     protected override void OnScaleUpdate(Vector2 newPosition, Vector2 newSize)
     {
         transform.localPosition = newPosition;
-        transform.localScale = newSize;
+        foreach(SpriteRenderer sprite in sprites)
+        {
+            if(sprite.drawMode == SpriteDrawMode.Simple)
+            {
+                sprite.transform.localScale = newSize;
+            }
+            else
+            {
+                sprite.size = newSize;
+            }
+        }
     }
 
     protected override void OnScaleEnd()
