@@ -207,8 +207,13 @@ public class ScaleMechanicComponent : MonoBehaviour
             return;
         }
 
+        if(currentSize.x * currentSize.y > 20.0f)
+        {
+            return;
+        }
+
         StartManualUpdateSize();
-        ManualUpdateSize(ScaleMode.None, currentSize + (other.CurrentSize * 0.01f));
+        ManualUpdateSize(ScaleMode.None, currentSize + (Vector2.one * 0.05f));
         EndManualUpdateSize();
     }
 

@@ -8,14 +8,18 @@ public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float speed;
 
-    public void Initialize(Vector2 dir, int damage, ScaleMechanicComponent owner)
+    private float lifeTime = 0.0f;
+
+    public void Initialize(Vector2 dir, int damage, float range, ScaleMechanicComponent owner)
     {
         transform.up = dir;
         GetComponent<Rigidbody2D>().velocity = dir * speed;
         DamageScript damageScript = GetComponent<DamageScript>();
         damageScript.SetDamageFromScaling(damage);
 
-        if(owner != null)
+        lifeTime = range / speed;
+
+        if (owner != null)
         {
             damageScript.ScalableOwner = owner;
         }
@@ -23,10 +27,21 @@ public class BulletScript : MonoBehaviour
 
     private void Update()
     {
-        if(GameController.Instance.IsOutOfGameArea(transform.position))
+        lifeTime -= Time.deltaTime;
+        if(lifeTime <= 0.0f || GameController.Instance.IsOutOfGameArea(transform.position))
         {
             DestroySelf();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        DestroySelf();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DestroySelf();
     }
 
     public void DestroySelf()

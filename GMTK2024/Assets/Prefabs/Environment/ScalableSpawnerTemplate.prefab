@@ -176,9 +176,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2129567979290623442, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129567979290623442, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129567979290623442, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3471607610355062179, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: lossResourceMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_Name
@@ -373,7 +413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 3024435107433937590}
-  listenWhenDisabled: 0
   spawnerEnabledSprite: {fileID: 3621904730370282954}
   spawnerDisabledSprite: {fileID: 5359186003783797071}
 --- !u!114 &3024435107433937590 stripped

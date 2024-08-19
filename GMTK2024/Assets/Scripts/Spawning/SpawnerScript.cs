@@ -67,12 +67,6 @@ public class SpawnerScript : MonoBehaviour
 
     private void CalculateStats()
     {
-        // spawn rate = 2 => duration = 1, count = 2
-        // spawn rate = 1.5 => duration = 1.333, count = 2
-        // spawn rate = 1.1 => duration = 1.81818181818181, count = 2
-        // spawn rate = 1 => duration = 1, count = 1
-        // spawn rate = 0.5 => duration = 2, count = 1
-
         if (spawnRate <= 0)
         {
             spawnWaveDuration = 0.0f;

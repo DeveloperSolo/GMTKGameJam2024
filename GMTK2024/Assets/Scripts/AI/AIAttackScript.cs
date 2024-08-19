@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class AIAttackScript : MonoBehaviour
     {
         targetFinder = GetComponent<BaseAITargetFinderScript>();
         scalableOwner = GetComponentInChildren<ScaleMechanicComponent>();
+        CalculateAttackRate();
+    }
+
+    private void OnEnable()
+    {
         CalculateAttackRate();
     }
 
@@ -65,7 +71,7 @@ public class AIAttackScript : MonoBehaviour
         }
 
         SpawnAttack();
-        timeTillNextAttack += 1.0f / attackSpeed;
+        timeTillNextAttack += attackWaveDuration;
     }
 
     private void SpawnAttack()
@@ -80,14 +86,15 @@ public class AIAttackScript : MonoBehaviour
         float angle = -attackAngle * (((float)count / 2) - 0.5f);
         for (int i = 0; i < count; ++i)
         {
+            float rad = Mathf.Deg2Rad * angle;
             Vector2 dir = new Vector2(
-                targetDir.x * Mathf.Cos(angle) - targetDir.y * Mathf.Sin(angle),
-                targetDir.x * Mathf.Sin(angle) + targetDir.y * Mathf.Cos(angle)
+                targetDir.x * Mathf.Cos(rad) - targetDir.y * Mathf.Sin(rad),
+                targetDir.x * Mathf.Sin(rad) + targetDir.y * Mathf.Cos(rad)
             );
 
             GameObject instance = bulletManager.SpawnInstance();
             instance.transform.position = transform.position;
-            instance.GetComponent<BulletScript>().Initialize(dir, attackDamage, scalableOwner);
+            instance.GetComponent<BulletScript>().Initialize(dir, attackDamage, maxAttackRange, scalableOwner);
 
             angle += attackAngle;
         }
@@ -105,8 +112,6 @@ public class AIAttackScript : MonoBehaviour
         attackWaveDuration = 1.0f / attackSpeed;
         attackWaveCount = Mathf.Ceil(attackSpeed);
         attackWaveDuration *= attackWaveCount;
-
-        timeTillNextAttack = attackWaveDuration;
     }
 
     public void GetDamageValueForInfoDisplay(EntityInfoScript.Info info)
@@ -116,7 +121,7 @@ public class AIAttackScript : MonoBehaviour
 
     public void GetSpeedValueForInfoDisplay(EntityInfoScript.Info info)
     {
-        info.InfoValue = attackSpeed.ToString();
+        info.InfoValue = attackSpeed.ToString("F2") + "\n(" + attackWaveCount + " in " + attackWaveDuration.ToString("F1") + "s)";
     }
 
     public void SetDamageFromScaling(float newDamage)

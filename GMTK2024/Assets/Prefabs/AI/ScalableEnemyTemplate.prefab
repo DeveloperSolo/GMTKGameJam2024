@@ -154,12 +154,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2129567979290623442, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129567979290623442, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703366159433375371, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
@@ -536,7 +560,8 @@ MonoBehaviour:
   maxAttackRange: 4
   attackDamage: 0
   attackSpeed: 1
-  attackPrefab: {fileID: 6998848996792792917, guid: 1698c039ed8bc1745a2866de978f581f, type: 3}
+  attackAngle: 15
+  bulletManager: {fileID: 0}
 --- !u!114 &3891069087372275067 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
