@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using UnityEditor.Presets;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 public class ScaleMechanicComponent : MonoBehaviour
 {
