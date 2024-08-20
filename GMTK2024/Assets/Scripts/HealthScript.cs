@@ -65,4 +65,9 @@ public class HealthScript : MonoBehaviour
         totalHealth = Mathf.FloorToInt(newTotalHealth);
         UpdateHealth(Mathf.FloorToInt((float)totalHealth * percent));
     }
+
+    public void PlaySFX(string key)
+    {
+        AudioManager.Instance.PlaySFX(key);
+    }
 }

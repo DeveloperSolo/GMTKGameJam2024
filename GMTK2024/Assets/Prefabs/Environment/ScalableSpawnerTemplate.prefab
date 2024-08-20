@@ -217,8 +217,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: gainResourceMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: lossResourceMultiplier
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_Name

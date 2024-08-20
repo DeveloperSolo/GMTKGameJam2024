@@ -63,6 +63,7 @@ public class SpawnerScript : MonoBehaviour
             }
         }
 
+        AudioManager.Instance.PlaySFX("MinionSpawn");
         timeTillNextSpawn += spawnWaveDuration;
     }
 
