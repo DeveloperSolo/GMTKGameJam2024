@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
                 {
                     winScreen.SetActive(true);
                     winScreen.transform.position = (Vector2)Camera.main.transform.position;
-                    Camera.main.orthographicSize = 5.0f;
+                    Camera.main.orthographicSize = 8.5f;
 
                     Transform timeToSpareText = winScreen.transform.Find("Time_text/Entity_Canvas/Mask/Text (TMP)");
                     if (timeToSpareText != null)

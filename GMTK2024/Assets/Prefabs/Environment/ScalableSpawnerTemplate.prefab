@@ -218,7 +218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: lossResourceMultiplier
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_Name
@@ -270,7 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.data[0].statName
@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -310,7 +310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[1].infoName
@@ -399,7 +399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  spawnRate: 0
+  spawnRate: 1
+  scaleSpawnSameSize: 1
 --- !u!114 &47409770130352435
 MonoBehaviour:
   m_ObjectHideFlags: 0

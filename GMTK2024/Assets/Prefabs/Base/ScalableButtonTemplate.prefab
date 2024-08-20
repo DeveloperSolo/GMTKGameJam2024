@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8210211133671967696}
   - component: {fileID: 6641271842245018547}
   - component: {fileID: 71245042653345461}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ScalableButtonTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 5359285287451958532}
-  listenWhenDisabled: 0
   statScalings: []
 --- !u!114 &6641271842245018547
 MonoBehaviour:
@@ -110,7 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 5359285287451958532}
-  listenWhenDisabled: 0
 --- !u!114 &71245042653345461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 5359285287451958532}
-  listenWhenDisabled: 0
 --- !u!1 &7783838608892179592
 GameObject:
   m_ObjectHideFlags: 0

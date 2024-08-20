@@ -6,6 +6,7 @@ public class SpawnerScript : MonoBehaviour
 {
     [SerializeField] private SpawnManager manager;
     [SerializeField] private float spawnRate = 1;
+    [SerializeField] private bool scaleSpawnSameSize = false;
 
     private float spawnWaveDuration;
     private float spawnWaveCount;
@@ -49,6 +50,17 @@ public class SpawnerScript : MonoBehaviour
             Vector2 extents = sizeSource.CurrentSize / 2.0f;
             Vector3 randOffset = new Vector3(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y), 0.0f);
             instance.transform.position = transform.position + randOffset;
+
+            if(scaleSpawnSameSize)
+            {
+                ScaleMechanicComponent scaleMechanic = instance.GetComponentInChildren<ScaleMechanicComponent>();
+                if(scaleMechanic != null)
+                {
+                    scaleMechanic.StartManualUpdateSize();
+                    scaleMechanic.ManualUpdateSize(ScaleMode.None, sizeSource.CurrentSize);
+                    scaleMechanic.EndManualUpdateSize();
+                }
+            }
         }
 
         timeTillNextSpawn += spawnWaveDuration;
