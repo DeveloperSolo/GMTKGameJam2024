@@ -3787,6 +3787,72 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 302614509563405010, guid: 02902fd24c45e5a4793675ca89ac79f4, type: 3}
   m_PrefabInstance: {fileID: 879779428}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &889976372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6110203798435902404, guid: 4fc42aeb488c7d7489f272ab8ff7771c, type: 3}
+  m_PrefabInstance: {fileID: 1069089935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &889976376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889976372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61457903275bc8f4eae45b19197a14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableTweenName: Enabled
+  tweenList:
+  - name: Enabled
+    value:
+      type: 2
+      fromUseCurrent: 0
+      from: {x: 1, y: 1, z: 1, w: 0}
+      toUseCurrent: 0
+      to: {x: 0.95, y: 0.95, z: 0.95, w: 0}
+    isLoop: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ignoreTimeScale: 0
+    duration: 1
+    delay: 0
+    onFinished:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &898115928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4555,7 +4621,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6110203798435902404, guid: 4fc42aeb488c7d7489f272ab8ff7771c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 889976376}
   m_SourcePrefab: {fileID: 100100000, guid: 4fc42aeb488c7d7489f272ab8ff7771c, type: 3}
 --- !u!4 &1069089936 stripped
 Transform:
@@ -5888,6 +5957,72 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1305164006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6110203798435902404, guid: 4fc42aeb488c7d7489f272ab8ff7771c, type: 3}
+  m_PrefabInstance: {fileID: 1456043964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1305164010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305164006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61457903275bc8f4eae45b19197a14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableTweenName: Enabled
+  tweenList:
+  - name: Enabled
+    value:
+      type: 2
+      fromUseCurrent: 0
+      from: {x: 1, y: 1, z: 1, w: 0}
+      toUseCurrent: 0
+      to: {x: 0.95, y: 0.95, z: 0.95, w: 0}
+    isLoop: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ignoreTimeScale: 0
+    duration: 1
+    delay: 0
+    onFinished:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1322230472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6624,7 +6759,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6110203798435902404, guid: 4fc42aeb488c7d7489f272ab8ff7771c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1305164010}
   m_SourcePrefab: {fileID: 100100000, guid: 4fc42aeb488c7d7489f272ab8ff7771c, type: 3}
 --- !u!4 &1456043965 stripped
 Transform:
