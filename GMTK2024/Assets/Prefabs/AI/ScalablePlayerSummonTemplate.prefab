@@ -303,7 +303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.data[1].startValue
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.data[2].startValue
@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.data[1].statPerScale
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: statScalings.Array.data[2].statPerScale

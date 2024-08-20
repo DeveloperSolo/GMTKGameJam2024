@@ -215,7 +215,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         }
 
         StartManualUpdateSize();
-        ManualUpdateSize(ScaleMode.None, currentSize + (other.CurrentSize * 0.05f));
+        ManualUpdateSize(ScaleMode.None, currentSize + (other.CurrentSize * 0.1f));
         EndManualUpdateSize();
     }
 
