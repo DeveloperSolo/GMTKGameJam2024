@@ -107,6 +107,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         {
             currentDraggingGizmo = gizmo;
             SendEvent(ScaleMechanicEvent.EventType.Start);
+            AudioManager.Instance.PlaySFX("GizmoPress");
         }
     }
 
@@ -136,6 +137,7 @@ public class ScaleMechanicComponent : MonoBehaviour
         prevSetSize = currentSize;
         HighlightGizmos(ScaleMode.None);
         SendEvent(ScaleMechanicEvent.EventType.End);
+        AudioManager.Instance.PlaySFX("GizmoRelease");
     }
 
     private void UpdateSizeFromGizmoDragging(ScaleMode scaleMode, Vector2 mouseDelta, bool preserveAspectRatio)
