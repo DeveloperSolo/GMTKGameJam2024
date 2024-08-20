@@ -171,14 +171,15 @@ public class GameController : MonoBehaviour
 
     private string GetTimeText(float time)
     {
-        int min = Mathf.FloorToInt(time / 60.0f);
-        float seconds = time - (min * 60);
-        string text = seconds.ToString("F1") + "s";
-        if (min > 0)
-        {
-            text = min + " min, " + text;
-        }
-        return text;
+        //int min = Mathf.FloorToInt(time / 60.0f);
+        //float seconds = time - (min * 60);
+        //string text = seconds.ToString("F1") + "s";
+        //if (min > 0)
+        //{
+        //    text = min + " min, " + text;
+        //}
+        //return text;
+        return time.ToString("F0") + "s";
     }
 
     public Vector3 ClampToScreen(Vector3 position, Vector2 size)

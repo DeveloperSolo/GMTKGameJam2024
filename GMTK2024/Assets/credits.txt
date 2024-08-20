@@ -3,3 +3,6 @@ https://opengameart.org/content/paper
 
 font, Delicious Handrawn, by agung Rohmat,
 https://fonts.google.com/specimen/Delicious+Handrawn
+
+BGM, Hero Immortal, by Trevor Lentz
+https://opengameart.org/content/hero-immortal
