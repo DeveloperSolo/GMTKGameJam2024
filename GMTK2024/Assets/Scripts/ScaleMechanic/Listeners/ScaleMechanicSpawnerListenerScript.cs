@@ -30,17 +30,32 @@ public class ScaleMechanicSpawnerListenerScript : ScaleMechanicListenerScript
     {
         base.OnScaleUpdate(newPosition, newSize);
 
-        if(Mathf.Abs(newSize.x - newSize.y) < 0.1f)
+        float smaller = Mathf.Min(newSize.x, newSize.y);
+        if(Mathf.Abs(newSize.x - newSize.y) < smaller * 0.1f)
         {
-            spawner.enabled = true;
-            spawnerEnabledSprite?.SetActive(true);
-            spawnerDisabledSprite?.SetActive(false);
+            if(!spawner.enabled)
+            {
+                spawner.enabled = true;
+                spawnerEnabledSprite?.SetActive(true);
+                spawnerDisabledSprite?.SetActive(false);
+                if(GameController.Instance.GetState() == GameState.Play)
+                {
+                    AudioManager.Instance.PlaySFX("WallToSpawner");
+                }
+            }
         }
         else
         {
-            spawner.enabled = false;
-            spawnerEnabledSprite?.SetActive(false);
-            spawnerDisabledSprite?.SetActive(true);
+            if(spawner.enabled)
+            {
+                spawner.enabled = false;
+                spawnerEnabledSprite?.SetActive(false);
+                spawnerDisabledSprite?.SetActive(true);
+                if (GameController.Instance.GetState() == GameState.Play)
+                {
+                    AudioManager.Instance.PlaySFX("SpawnerToWall");
+                }
+            }
         }
     }
 }
