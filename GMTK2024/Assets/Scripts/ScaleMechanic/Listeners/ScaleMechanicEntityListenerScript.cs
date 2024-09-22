@@ -38,6 +38,20 @@ public class ScaleMechanicEntityListenerScript : ScaleMechanicListenerScript
             }
         }
     }
+
+    public float GetScaleForStat(string statName, float targetStat)
+    {
+        foreach (EntityStatScaling statScaling in statScalings)
+        {
+            if(statScaling.StatName != statName)
+            {
+                continue;
+            }
+
+            return statScaling.GetSizeFromStat(this, targetStat);
+        }
+        return 0.0f;
+    }
 }
 
 [System.Serializable]
@@ -45,8 +59,9 @@ public struct EntityStatScaling
 {
     [SerializeField] private string statName;
     [SerializeField] private float startValue;
-    [SerializeField] private float statPerScale;
     [SerializeField] private UnityEvent<float> StatSetter;
+
+    public string StatName { get { return statName; } }
 
     public void SetStat(ScaleMechanicEntityListenerScript entityListener)
     {
@@ -60,7 +75,25 @@ public struct EntityStatScaling
 
     public void SetStat(float startSize, float currentSize)
     {
-        float newStat = startValue + ((currentSize - 1) * statPerScale);
+        float statPerScale = startValue / startSize;
+
+        float newStat = startValue + ((currentSize - startSize) * statPerScale);
         StatSetter.Invoke(newStat);
+    }
+
+    public float GetSizeFromStat(ScaleMechanicEntityListenerScript entityListener, float targetStat)
+    {
+        return GetSizeFromStat(entityListener.Source.StartSize, targetStat);
+    }
+
+    public float GetSizeFromStat(Vector2 startSize, float targetStat)
+    {
+        return GetSizeFromStat(startSize.x * startSize.y, targetStat);
+    }
+
+    public float GetSizeFromStat(float startSize, float targetStat)
+    {
+        float statPerScale = startValue / startSize;
+        return ((targetStat - startValue) / statPerScale) + startSize;
     }
 }

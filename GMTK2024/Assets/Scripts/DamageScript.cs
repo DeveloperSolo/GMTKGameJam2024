@@ -17,6 +17,7 @@ public class DamageScript : MonoBehaviour
     public UnityEvent OnDamage { get { return onDamageEvent; } }
     public UnityEvent OnKill { get { return onKillEvent; } }
 
+    // potentially not needed anymore
     public ScaleMechanicComponent ScalableOwner { get; set; }
 
 
@@ -63,11 +64,6 @@ public class DamageScript : MonoBehaviour
         else
         {
             onKillEvent?.Invoke();
-
-            if(ScalableOwner != null)
-            {
-                ScalableOwner.StealSizeFrom(health.ScalableOwner);
-            }
         }
     }
 

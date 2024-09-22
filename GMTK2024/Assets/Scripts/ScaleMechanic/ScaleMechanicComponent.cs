@@ -55,9 +55,7 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        StartManualUpdateSize();
-        ManualUpdateSize(ScaleMode.None, startSize);
-        EndManualUpdateSize();
+        ManualSetSize(ScaleMode.None, startSize);
     }
 
     private void Update()
@@ -183,6 +181,24 @@ public class ScaleMechanicComponent : MonoBehaviour
     #endregion Gizmos
 
     #region Manipulators
+
+    public void ManualSetSize(ScaleMode mode, float size)
+    {
+        float aspectRatio = currentSize.x / currentSize.y;
+
+        Vector2 sizeVector = Vector2.zero;
+        sizeVector.y = Mathf.Sqrt(size / aspectRatio);
+        sizeVector.x = sizeVector.y * aspectRatio;
+
+        ManualSetSize(mode, sizeVector);
+    }
+
+    public void ManualSetSize(ScaleMode mode, Vector2 size)
+    {
+        StartManualUpdateSize();
+        ManualUpdateSize(mode, size);
+        EndManualUpdateSize();
+    }
 
     public void StartManualUpdateSize()
     {

@@ -52,6 +52,7 @@ public class HealthScript : MonoBehaviour
     private void UpdateHealth(int newHealth)
     {
         currentHealth = Mathf.Clamp(newHealth, 0, totalHealth);
+        Debug.Log(name + " set health to " + currentHealth + "/" + totalHealth);
     }
 
     public void GetValueForInfoDisplay(EntityInfoScript.Info info)
@@ -61,9 +62,19 @@ public class HealthScript : MonoBehaviour
 
     public void SetHealthFromScaling(float newTotalHealth)
     {
-        float percent = (float)currentHealth / totalHealth;
+        //float percent = (float)currentHealth / totalHealth;
         totalHealth = Mathf.FloorToInt(newTotalHealth);
-        UpdateHealth(Mathf.FloorToInt((float)totalHealth * percent));
+        UpdateHealth(totalHealth);
+    }
+
+    public void SetScalingFromHealth()
+    {
+        ScaleMechanicEntityListenerScript entityListener = GetComponent<ScaleMechanicEntityListenerScript>();
+        if(entityListener != null && ScalableOwner != null)
+        {
+            Debug.Log("new scale from health: " + entityListener.GetScaleForStat("Health", (float)currentHealth));
+            ScalableOwner.ManualSetSize(ScaleMode.None, entityListener.GetScaleForStat("Health", (float)currentHealth));
+        }
     }
 
     public void PlaySFX(string key)
