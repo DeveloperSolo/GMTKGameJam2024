@@ -249,6 +249,14 @@ PrefabInstance:
       propertyPath: costMultiplier
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: enableInputGrow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786822017842438505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: lossResourceMultiplier
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7026291509490564293, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_Name
       value: ScalableEnemyTemplate
@@ -259,7 +267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8350882437730564365, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8350882437730564365, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_LocalPosition.y
@@ -297,9 +305,265 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].statName
+      value: Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].statName
+      value: Mvt Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].statName
+      value: Atk Dmg
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].statName
+      value: Atk Spd
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].statName
+      value: Vision Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].statName
+      value: Atk Min Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].statName
+      value: Atk Max Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].startValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].startValue
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].startValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].startValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].startValue
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].startValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].statPerScale
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].statPerScale
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].statPerScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8410846756449288346}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2422865737257532807}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7415398882466647651}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7415398882466647651}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7345458860278607646}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7415398882466647651}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7415398882466647651}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetHealthFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeedFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetDamageFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeedFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetRangeFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMinRangeFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMaxRangeFromScaling
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HealthScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIMovementScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RangedAITargetFinderScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[0].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[1].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[2].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[3].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[4].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[5].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058839957418435505, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: statScalings.Array.data[6].StatSetter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[0].infoName
@@ -311,11 +575,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[2].infoName
-      value: Speed
+      value: Mvt Spd
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[3].infoName
-      value: Damage
+      value: Atk Dmg
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: infoList.Array.data[4].infoName
+      value: Atk Spd
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[1].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.size
@@ -327,6 +595,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[3].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: infoList.Array.data[4].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
@@ -344,7 +616,11 @@ PrefabInstance:
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[3].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4964119865059407139}
+      objectReference: {fileID: 7415398882466647651}
+    - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: infoList.Array.data[4].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7415398882466647651}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[1].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -358,6 +634,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: infoList.Array.data[4].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[1].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GetValueForInfoDisplay
       objectReference: {fileID: 0}
@@ -367,7 +647,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[3].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetValueForInfoDisplay
+      value: GetDamageValueForInfoDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: infoList.Array.data[4].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GetSpeedValueForInfoDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[0].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -383,7 +667,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[3].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DamageScript, Assembly-CSharp
+      value: AIAttackScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: infoList.Array.data[4].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AIAttackScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[1].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -395,6 +683,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: infoList.Array.data[3].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204683647939178788, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: infoList.Array.data[4].getInfoValueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -470,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5105be824186404380aa4d406076ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 5
   maxReachDistance: 1
 --- !u!114 &8851998056674420165
 MonoBehaviour:
@@ -525,6 +817,18 @@ MonoBehaviour:
           m_StringArgument: Damaged
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8410846756449288346}
+        m_TargetAssemblyTypeName: HealthScript, Assembly-CSharp
+        m_MethodName: SetScalingFromHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: EnemyHurt
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8851998056674420165}
         m_TargetAssemblyTypeName: AIControllerScript, Assembly-CSharp
         m_MethodName: IsDamaged
@@ -540,16 +844,16 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 743690923897565399}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 8410846756449288346}
+        m_TargetAssemblyTypeName: HealthScript, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: EnemyDeath
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &4964119865059407139
@@ -605,7 +909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAttackRange: 3
   maxAttackRange: 4
-  attackDamage: 0
+  attackDamage: 10
   attackSpeed: 1
   attackAngle: 15
   bulletManager: {fileID: 0}

@@ -40,6 +40,8 @@ public class SpawnManager : MonoBehaviour
         GameObject instance = Instantiate(prefab);
         instance.transform.SetParent(transform);
         instances.Add(instance);
+        instance.name = instance.name.Replace("Template(Clone)", "");
+        instance.name += " (" + instances.Count + ")";
         return instance;
     }
 

@@ -201,6 +201,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550625633694698064, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
+      propertyPath: tryMaintainAspectRatio
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3929226102550119253, guid: ce3940ad2f25caf468c51caea741e950, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -756,6 +760,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Damaged
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6591951312221962884}
+        m_TargetAssemblyTypeName: HealthScript, Assembly-CSharp
+        m_MethodName: SetScalingFromHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MinionHurt
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4622035171520412637}
