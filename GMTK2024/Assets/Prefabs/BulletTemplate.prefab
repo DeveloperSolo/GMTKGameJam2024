@@ -367,7 +367,7 @@ MonoBehaviour:
   knockbackStrength: 100
   mask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4224
   onDamageEvent:
     m_PersistentCalls:
       m_Calls:
