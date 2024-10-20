@@ -44,12 +44,14 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameObject.SetActive(false);
+        if(!collision.collider.CompareTag("Mirror"))
+            gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
+        if (!collision.GetComponent<Collider2D>().CompareTag("Mirror"))
+            gameObject.SetActive(false);
     }
 
     public void DestroySelf()

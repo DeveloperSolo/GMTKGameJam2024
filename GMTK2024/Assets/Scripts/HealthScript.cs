@@ -52,7 +52,7 @@ public class HealthScript : MonoBehaviour
     private void UpdateHealth(int newHealth)
     {
         currentHealth = Mathf.Clamp(newHealth, 0, totalHealth);
-        Debug.Log(name + " set health to " + currentHealth + "/" + totalHealth);
+        //Debug.Log(name + " set health to " + currentHealth + "/" + totalHealth);
     }
 
     public void GetValueForInfoDisplay(EntityInfoScript.Info info)
@@ -72,7 +72,7 @@ public class HealthScript : MonoBehaviour
         ScaleMechanicEntityListenerScript entityListener = GetComponent<ScaleMechanicEntityListenerScript>();
         if(entityListener != null && ScalableOwner != null)
         {
-            Debug.Log("new scale from health: " + entityListener.GetScaleForStat("Health", (float)currentHealth));
+            //Debug.Log("new scale from health: " + entityListener.GetScaleForStat("Health", (float)currentHealth));
             ScalableOwner.ManualSetSize(ScaleMode.None, entityListener.GetScaleForStat("Health", (float)currentHealth));
         }
     }
