@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class ScaleMechanicComponent : MonoBehaviour
@@ -28,13 +29,16 @@ public class ScaleMechanicComponent : MonoBehaviour
     [SerializeField] private List<Transform> draggablePoints;
     [SerializeField] private List<BoxCollider2D> draggableEdges;
 
+    private List<ScaleMechanicGizmoScript> gizmos;
+    private ScaleGizmoMode gizmoMode = ScaleGizmoMode.Hidden;
     private ScaleMechanicGizmoScript currentDraggingGizmo = null;
-    private bool isDraggingGizmoEnabled = true;
+    //private bool isDraggingGizmoEnabled = true;
     private bool isManuallyScaling = false;
+
     private List<ScaleMechanicListenerScript> listeners = new List<ScaleMechanicListenerScript>();
     private List<ScaleMechanicListenerScript> listenersToRemove = new List<ScaleMechanicListenerScript>();
 
-    public bool IsDraggingGizmoEnabled { get { return isDraggingGizmoEnabled; } }
+    //public bool IsDraggingGizmoEnabled { get { return isDraggingGizmoEnabled; } }
     public bool IsManuallyScaling { get { return isManuallyScaling; } }
 
     private void Awake()
@@ -53,6 +57,11 @@ public class ScaleMechanicComponent : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        ScaleMechanicManager.Instance.AddComponent(this);
+    }
+
     private void OnEnable()
     {
         ManualSetSize(ScaleMode.None, startSize);
@@ -68,13 +77,18 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     private void InitializeGizmoScripts()
     {
+        gizmos = new List<ScaleMechanicGizmoScript>();
         foreach (Transform point in draggablePoints)
         {
-            point.GetComponent<ScaleMechanicGizmoScript>().Initialize(this);
+            ScaleMechanicGizmoScript gizmo = point.GetComponent<ScaleMechanicGizmoScript>();
+            gizmo.Initialize(this);
+            gizmos.Add(gizmo);
         }
         foreach (BoxCollider2D edge in draggableEdges)
         {
-            edge.GetComponent<ScaleMechanicGizmoScript>().Initialize(this);
+            ScaleMechanicGizmoScript gizmo = edge.GetComponent<ScaleMechanicGizmoScript>();
+            gizmo.Initialize(this);
+            gizmos.Add(gizmo);
         }
     }
 
@@ -83,30 +97,45 @@ public class ScaleMechanicComponent : MonoBehaviour
         return currentDraggingGizmo != null;
     }
 
-    public void EnableDraggingGizmo()
+    //public void EnableDraggingGizmo()
+    //{
+    //    isDraggingGizmoEnabled = true;
+    //    gameObject.SetActive(true);
+    //}
+
+    //public void DisableDraggingGizmo()
+    //{
+    //    isDraggingGizmoEnabled = false;
+    //    if(IsDraggingGizmo())
+    //    {
+    //        currentDraggingGizmo.EndDrag();
+    //    }
+    //    gameObject.SetActive(false);
+    //}
+
+    public void SetGizmoMode(ScaleGizmoMode mode)
     {
-        isDraggingGizmoEnabled = true;
-        gameObject.SetActive(true);
+        gizmoMode = mode;
+        foreach (ScaleMechanicGizmoScript gizmo in gizmos)
+        {
+            gizmo.SetInteractable(gizmoMode, true);
+        }
+        //border.gameObject.SetActive(mode != ScaleGizmoMode.Hidden);
     }
 
-    public void DisableDraggingGizmo()
+    public ScaleGizmoMode GetGizmoMode()
     {
-        isDraggingGizmoEnabled = false;
-        if(IsDraggingGizmo())
-        {
-            currentDraggingGizmo.EndDrag();
-        }
-        gameObject.SetActive(false);
+        return gizmoMode;
     }
 
     public void StartDraggingGizmo(ScaleMechanicGizmoScript gizmo)
     {
-        if(IsDraggingGizmoEnabled)
-        {
+        //if(IsDraggingGizmoEnabled)
+        //{
             currentDraggingGizmo = gizmo;
             SendEvent(ScaleMechanicEvent.EventType.Start);
             AudioManager.Instance.PlaySFX("GizmoPress");
-        }
+        //}
     }
 
     private void UpdateDraggingGizmo()
@@ -384,7 +413,7 @@ public class ScaleMechanicComponent : MonoBehaviour
 
     private void UpdateSizeVisuals()
     {
-        border.size = currentSize;
+        //border.size = currentSize;
 
         Vector2 padding = new Vector2(0.05f, 0.05f);
         Vector2 extents = (currentSize / 2.0f) - padding;
@@ -398,15 +427,19 @@ public class ScaleMechanicComponent : MonoBehaviour
         Vector2 EdgeSize = (examplePoint.localPosition - (examplePoint.localScale / 2.0f)) * 2.0f;
 
         DraggableEdge_Top.transform.localPosition = new Vector2(0.0f, extents.y);
+        DraggableEdge_Top.transform.GetChild(0).localScale = new Vector2(currentSize.x, 0.5f);
         DraggableEdge_Top.size = new Vector2(EdgeSize.x, DraggableEdge_Top.size.y);
 
         DraggableEdge_Left.transform.localPosition = new Vector2(-extents.x, 0.0f);
+        DraggableEdge_Left.transform.GetChild(0).localScale = new Vector2(0.5f, currentSize.y);
         DraggableEdge_Left.size = new Vector2(DraggableEdge_Left.size.x, EdgeSize.y);
 
         DraggableEdge_Bot.transform.localPosition = new Vector2(0.0f, -extents.y);
+        DraggableEdge_Bot.transform.GetChild(0).localScale = new Vector2(currentSize.x, 0.5f);
         DraggableEdge_Bot.size = new Vector2(EdgeSize.x, DraggableEdge_Bot.size.y);
 
         DraggableEdge_Right.transform.localPosition = new Vector2(extents.x, 0.0f);
+        DraggableEdge_Right.transform.GetChild(0).localScale = new Vector2(0.5f, currentSize.y);
         DraggableEdge_Right.size = new Vector2(DraggableEdge_Right.size.x, EdgeSize.y);
     }
 
@@ -492,6 +525,13 @@ public class ScaleMechanicComponent : MonoBehaviour
     }
 
     #endregion Property Shortcuts
+}
+
+public enum ScaleGizmoMode
+{
+    Hidden,
+    Shown,
+    Minimal,
 }
 
 public enum ScaleMode

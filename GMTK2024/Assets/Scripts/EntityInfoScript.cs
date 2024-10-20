@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class EntityInfoScript : MonoBehaviour
 {
     [Header("Info")]
     [SerializeField] private List<Info> infoList;
@@ -15,7 +15,6 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] private GameObject infoCanvas;
     [SerializeField] private TextMeshProUGUI infoText;
 
-    private bool isPointerOver = false;
     private ScaleMechanicComponent scaleMechanic = null;
 
     private void Awake()
@@ -38,35 +37,23 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        isPointerOver = true;
-        ShowInfo();
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isPointerOver = false;
-        if (!KeepInfoOpen())
-        {
-            HideInfo();
-        }
-    }
-
     private void Update()
     {
-        if(!IsInfoShown())
+        if(scaleMechanic.GetGizmoMode() == ScaleGizmoMode.Shown)
         {
-            return;
+            if(!IsInfoShown())
+            {
+                ShowInfo();
+            }
+            UpdateInfo();
         }
-
-        if (!isPointerOver && !KeepInfoOpen())
+        else
         {
-            HideInfo();
-            return;
+            if(IsInfoShown())
+            {
+                HideInfo();
+            }
         }
-
-        UpdateInfo();
     }
 
     private void ShowInfo()
@@ -90,11 +77,6 @@ public class EntityInfoScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private bool IsInfoShown()
     {
         return infoCanvas.activeSelf;
-    }
-
-    private bool KeepInfoOpen()
-    {
-        return scaleMechanic != null && (scaleMechanic.IsDraggingGizmo() || scaleMechanic.IsManuallyScaling);
     }
 
     private void UpdateInfo()

@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
 
     [Header("Important Stuff")]
     [SerializeField] private CameraScript cameraScript;
+    [SerializeField] private ScaleMechanicManager scaleMechanicManager;
     [SerializeField] private GameObject mainEnemy;
     [SerializeField] private Transform environmentRoot;
 
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;
 
     public GameObject MainEnemy { get { return mainEnemy; } }
+    public CameraScript MainCamera { get { return cameraScript; } }
 
     private static GameController instance;
     public static GameController Instance { get { return instance; } }
@@ -99,6 +101,7 @@ public class GameController : MonoBehaviour
 
     public void SetState(GameState newState)
     {
+        scaleMechanicManager.ResetHighlights();
         // exit
         switch(currentState)
         {

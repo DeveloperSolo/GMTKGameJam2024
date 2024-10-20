@@ -53,9 +53,4 @@ public class BulletScript : MonoBehaviour
         if (!collision.GetComponent<Collider2D>().CompareTag("Mirror"))
             gameObject.SetActive(false);
     }
-
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
-    }
 }
