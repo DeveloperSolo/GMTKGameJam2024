@@ -332,6 +332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: temp_Consumables
       objectReference: {fileID: 0}
+    - target: {fileID: 6802860311952887656, guid: 3e5568eda2ca47b4caed50e1d3741ccb, type: 3}
+      propertyPath: spawnRate
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 7654672021851755747, guid: 3e5568eda2ca47b4caed50e1d3741ccb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -576,6 +580,7 @@ Transform:
   - {fileID: 1897324842}
   - {fileID: 644695379}
   - {fileID: 1120083066}
+  - {fileID: 1855423049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &344830678
@@ -8110,6 +8115,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 302614509563405010, guid: 02902fd24c45e5a4793675ca89ac79f4, type: 3}
   m_PrefabInstance: {fileID: 1847217561}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1855423047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855423049}
+  - component: {fileID: 1855423048}
+  m_Layer: 0
+  m_Name: SpawnManager_Cannonball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1855423048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855423047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f9fc05d41e6eb438670209a1af6243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1676197320831864683, guid: 78038156b52364d478cd2c9d8c1292dc, type: 3}
+--- !u!4 &1855423049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855423047}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 333701462}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1874594722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2370579868392456394, guid: 4fc42aeb488c7d7489f272ab8ff7771c, type: 3}
