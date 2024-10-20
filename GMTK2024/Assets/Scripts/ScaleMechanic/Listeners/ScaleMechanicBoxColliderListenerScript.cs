@@ -8,8 +8,8 @@ public class ScaleMechanicBoxColliderListenerScript : ScaleMechanicListenerScrip
 
     protected override void Awake()
     {
-        base.Awake();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        base.Awake();
     }
 
     protected override void OnScaleStart()

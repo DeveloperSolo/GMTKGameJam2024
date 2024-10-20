@@ -8,8 +8,8 @@ public class ScaleMechanicRectTransformListenerScript : ScaleMechanicListenerScr
 
     protected override void Awake()
     {
-        base.Awake();
         rectTransform = GetComponent<RectTransform>();
+        base.Awake();
     }
 
     protected override void OnScaleUpdate(Vector2 newPosition, Vector2 newSize)

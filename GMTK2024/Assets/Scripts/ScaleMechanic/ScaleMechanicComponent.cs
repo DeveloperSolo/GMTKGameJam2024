@@ -256,6 +256,14 @@ public class ScaleMechanicComponent : MonoBehaviour
         if (!HasListener(listener))
         {
             listeners.Add(listener);
+
+            //force update listener to current size
+            ScaleMechanicEvent ev = new ScaleMechanicEvent(ScaleMechanicEvent.EventType.Start, transform.localPosition, currentSize);
+            listener.Recieve(ev);
+            ev.Type = ScaleMechanicEvent.EventType.Update;
+            listener.Recieve(ev);
+            ev.Type = ScaleMechanicEvent.EventType.End;
+            listener.Recieve(ev);
         }
     }
 
