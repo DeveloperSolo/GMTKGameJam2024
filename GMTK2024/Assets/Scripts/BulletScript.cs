@@ -10,6 +10,8 @@ public class BulletScript : MonoBehaviour
 
     private float lifeTime = 0.0f;
 
+    private TrailRenderer trailRenderer;
+
     public void Initialize(Vector2 dir, int damage, float range, ScaleMechanicComponent owner)
     {
         transform.up = dir;
@@ -22,6 +24,12 @@ public class BulletScript : MonoBehaviour
         if (owner != null)
         {
             damageScript.ScalableOwner = owner;
+            transform.localScale = owner.CurrentSize;
+            
+            if(trailRenderer == null)
+                trailRenderer = GetComponentInChildren<TrailRenderer>();
+
+            trailRenderer.widthMultiplier = 0.2f * Mathf.Max(owner.CurrentSize.x,owner.CurrentSize.y);
         }
     }
 
