@@ -35,14 +35,14 @@ partial class AIControllerScript : MonoBehaviour
         public override void OnEnter(AIControllerScript controller)
         {
             base.OnEnter(controller);
-            controller.scaleMechanic.DisableDraggingGizmo();
+            //controller.scaleMechanic.DisableDraggingGizmo();
             wait = 0.5f;
         }
 
         public override void OnExit(AIControllerScript controller)
         {
             base.OnExit(controller);
-            controller.scaleMechanic.EnableDraggingGizmo();
+            //controller.scaleMechanic.EnableDraggingGizmo();
         }
 
         public override void OnUpdate(AIControllerScript controller, float elapsed)

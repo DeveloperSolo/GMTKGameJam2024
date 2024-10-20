@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    [Header("Camera Highlight Settings")]
+    [SerializeField] private Transform highlightMask;
+
     [Header("Camera Panning Settings")]
     [SerializeField] private float panningDuration = 1.0f;
     [SerializeField] private AnimationCurve panningCurve;
@@ -27,7 +30,7 @@ public class CameraScript : MonoBehaviour
             return;
         }
 
-        ProcessCameraZooming(-Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime);
+        ProcessCameraZooming(-Input.mouseScrollDelta.y * zoomSpeed * Time.unscaledDeltaTime);
 
         if (GameController.GetMouseButtonUp(MouseButton.Middle))
         {
@@ -39,6 +42,8 @@ public class CameraScript : MonoBehaviour
         {
             ProcessMovementByMouseDragging(GameController.GetMouseButtonDown(MouseButton.Right));
         }
+
+        TryUpdateHighlight();
     }
 
     private void OnDisable()
@@ -130,6 +135,30 @@ public class CameraScript : MonoBehaviour
     }
 
     #endregion Camera Zooming
+
+    #region Highlighting
+
+    public void StartHighlight()
+    {
+        highlightMask.gameObject.SetActive(true);
+    }
+
+    public void StopHighlight()
+    {
+        highlightMask.gameObject.SetActive(false);
+    }
+
+    private void TryUpdateHighlight()
+    {
+        if(!highlightMask.gameObject.activeSelf)
+        {
+            return;
+        }
+
+        highlightMask.localScale = GetViewportWorldSize();
+    }
+
+    #endregion Highlighting
 
     private Vector2 GetViewportWorldSize()
     {

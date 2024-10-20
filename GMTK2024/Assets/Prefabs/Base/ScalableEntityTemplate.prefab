@@ -492,7 +492,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    ignoreTimeScale: 0
+    ignoreTimeScale: 1
     duration: 0.15
     delay: 0
     onFinished:
@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 3471607610355062179}
   - component: {fileID: 9058839957418435505}
   - component: {fileID: 6268793092702323179}
+  - component: {fileID: 3972007369709931970}
   m_Layer: 0
   m_Name: ScalableEntityTemplate
   m_TagString: Untagged
@@ -679,6 +680,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 6786822017842438505}
+--- !u!114 &3972007369709931970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7026291509490564293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713a56834534d4f4ea71483a7fd8dc64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7196769850339327450
 PrefabInstance:
   m_ObjectHideFlags: 0

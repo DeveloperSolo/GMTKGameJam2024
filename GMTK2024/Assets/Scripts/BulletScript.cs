@@ -51,9 +51,4 @@ public class BulletScript : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
-    }
 }
